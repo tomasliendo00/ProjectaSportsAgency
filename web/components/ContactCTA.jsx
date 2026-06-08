@@ -1,6 +1,8 @@
+'use client'
+
 import { useState } from 'react'
-import { Reveal } from './ui.jsx'
-import { useLang } from '../i18n.jsx'
+import { Reveal } from './ui'
+import { useLang } from '@/lib/i18n'
 
 export default function ContactCTA() {
   const { t } = useLang()

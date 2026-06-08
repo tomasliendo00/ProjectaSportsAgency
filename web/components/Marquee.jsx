@@ -1,4 +1,6 @@
-import { useLang } from '../i18n.jsx'
+'use client'
+
+import { useLang } from '@/lib/i18n'
 
 export default function Marquee() {
   const { t } = useLang()

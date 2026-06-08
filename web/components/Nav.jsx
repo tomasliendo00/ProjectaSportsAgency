@@ -1,6 +1,8 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Logo } from './ui.jsx'
-import { useLang } from '../i18n.jsx'
+import { Logo } from './ui'
+import { useLang } from '@/lib/i18n'
 
 export default function Nav() {
   const { t, lang, toggle } = useLang()

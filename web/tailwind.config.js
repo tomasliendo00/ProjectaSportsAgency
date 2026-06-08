@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: [
+    './app/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+  ],
   theme: {
     extend: {
       colors: {
@@ -13,8 +16,8 @@ export default {
         bone: '#F4F2EE',
       },
       fontFamily: {
-        display: ['Anton', 'sans-serif'],
-        sans: ['Manrope', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         marquee: {

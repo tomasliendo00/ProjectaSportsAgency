@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, useContext, useState, useCallback } from 'react'
 
 export const content = {
@@ -194,7 +196,7 @@ export function LanguageProvider({ children }) {
   const toggle = useCallback(() => {
     setLang((l) => {
       const next = l === 'es' ? 'en' : 'es'
-      document.documentElement.lang = next
+      if (typeof document !== 'undefined') document.documentElement.lang = next
       return next
     })
   }, [])

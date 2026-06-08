@@ -1,5 +1,7 @@
-import { Logo } from './ui.jsx'
-import { useLang } from '../i18n.jsx'
+'use client'
+
+import { Logo } from './ui'
+import { useLang } from '@/lib/i18n'
 
 export default function Footer() {
   const { t } = useLang()

@@ -1,5 +1,7 @@
+'use client'
+
 import { motion } from 'framer-motion'
-import { useLang } from '../i18n.jsx'
+import { useLang } from '@/lib/i18n'
 
 const ease = [0.22, 1, 0.36, 1]
 
