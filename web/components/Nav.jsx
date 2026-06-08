@@ -32,6 +32,19 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Scroll to same-page anchors explicitly so navigation is reliable even
+  // when the mobile menu is collapsing. scrollIntoView honors each section's
+  // scroll-mt offset for the fixed header.
+  const goTo = (e, href) => {
+    e.preventDefault()
+    setOpen(false)
+    const el = document.querySelector(href)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+      window.history.replaceState(null, '', href)
+    }
+  }
+
   const links = [
     ['#about', t.nav.about],
     ['#services', t.nav.services],
@@ -48,13 +61,14 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        <a href="#top" className="shrink-0"><Logo /></a>
+        <a href="#top" onClick={(e) => goTo(e, '#top')} className="shrink-0"><Logo /></a>
 
         <div className="hidden items-center gap-8 lg:flex">
           {links.map(([href, label]) => (
             <a
               key={href}
               href={href}
+              onClick={(e) => goTo(e, href)}
               className="text-sm font-semibold text-bone/70 transition-colors hover:text-bone"
             >
               {label}
@@ -74,6 +88,7 @@ export default function Nav() {
 
           <a
             href="#apply"
+            onClick={(e) => goTo(e, '#apply')}
             className="hidden rounded-full bg-flame px-5 py-2 text-sm font-bold text-ink transition-transform hover:scale-105 lg:inline-block"
           >
             {t.nav.cta}
@@ -108,7 +123,7 @@ export default function Nav() {
                   key={href}
                   variants={itemVariants}
                   href={href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => goTo(e, href)}
                   className="block py-2.5 text-base font-semibold text-bone/80"
                 >
                   {label}
@@ -121,7 +136,7 @@ export default function Nav() {
               >
                 <a
                   href="#apply"
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => goTo(e, '#apply')}
                   className="block rounded-full bg-flame px-5 py-2.5 text-center text-sm font-bold text-ink"
                 >
                   {t.nav.cta}
