@@ -12,7 +12,7 @@ export default function Requirements() {
         <Reveal>
           <SectionTag>{r.tag}</SectionTag>
           <div className="flex items-center gap-6">
-            <Heading className="shrink-0">{r.title}</Heading>
+            <Heading>{r.title}</Heading>
             <span className="hidden h-px flex-1 bg-gradient-to-r from-flame/50 to-transparent sm:block" />
           </div>
         </Reveal>
