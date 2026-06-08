@@ -1,6 +1,7 @@
 'use client'
 
 import { Reveal, SectionTag, Heading } from './ui'
+import { ArrowMark } from './icons'
 import { useLang } from '@/lib/i18n'
 
 export default function About() {
@@ -24,7 +25,7 @@ export default function About() {
             {a.points.map((p, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className="group flex gap-5 bg-surface p-7 transition-colors hover:bg-surface2">
-                  <span className="font-display text-3xl text-flame">↘</span>
+                  <ArrowMark className="mt-1 h-6 w-6 shrink-0 text-flame transition-transform group-hover:translate-x-0.5" />
                   <p className="text-lg font-semibold leading-snug">{p}</p>
                 </div>
               </Reveal>

@@ -20,7 +20,7 @@ const SITE_URL = 'https://projectasports.com'
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Projecta Sports Agency — Becas y transferencias deportivas en USA',
+    default: 'Projecta Sports Agency | Becas y transferencias deportivas en USA',
     template: '%s · Projecta Sports Agency',
   },
   description:
@@ -45,7 +45,13 @@ export const metadata = {
     description:
       'Convertimos tu talento en una oportunidad real. Becas y transferencias deportivas en USA.',
   },
-  icons: { icon: '/favicon.svg' },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: '/icon.png',
+  },
 }
 
 export const viewport = {

@@ -11,7 +11,7 @@ export default function Marquee() {
         {items.map((word, i) => (
           <span key={i} className="mx-6 flex items-center gap-6 font-display text-xl uppercase tracking-tight">
             {word}
-            <span className="text-ink/50">✦</span>
+            <span className="h-1.5 w-1.5 rotate-45 bg-ink/40" />
           </span>
         ))}
       </div>

@@ -5,10 +5,54 @@ import { Reveal } from './ui'
 import { useLang } from '@/lib/i18n'
 import { submitToGoogleForm } from '@/lib/googleForm'
 
-const REQUIRED = ['fullName', 'email', 'whatsapp']
-
 const inputClass =
   'w-full rounded-xl border border-ink/15 bg-ink/5 px-4 py-3 text-ink placeholder-ink/45 outline-none transition focus:border-ink focus:bg-ink/10'
+
+// Per-field rules. `validate` keys map to validators + error messages below.
+const RULES = {
+  fullName: { required: true },
+  email: { required: true, type: 'email', validate: 'email', inputMode: 'email' },
+  whatsapp: { required: true, type: 'tel', validate: 'phone', sanitize: 'phone', inputMode: 'tel' },
+  dob: { validate: 'date', sanitize: 'date', inputMode: 'numeric' },
+  budget: { inputMode: 'numeric' },
+  gpa: { validate: 'gpa', inputMode: 'decimal' },
+  credits: { validate: 'int', inputMode: 'numeric' },
+}
+
+// Real-time input filters (so you can't even type invalid characters).
+const sanitizers = {
+  phone: (v) => v.replace(/[^\d+\s()-]/g, ''),
+  // Auto-inserts the slashes as you type: 12252000 -> 12/25/2000.
+  // Slashes only sit *between* parts, so backspace never gets stuck on one.
+  date: (v) => {
+    const d = v.replace(/\D/g, '').slice(0, 8)
+    const parts = [d.slice(0, 2)]
+    if (d.length >= 3) parts.push(d.slice(2, 4))
+    if (d.length >= 5) parts.push(d.slice(4, 8))
+    return parts.join('/')
+  },
+}
+
+// Validators run on submit/next. Each returns true when the value is acceptable.
+const validators = {
+  email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+  phone: (v) => (v.match(/\d/g) || []).length >= 7 && (v.match(/\d/g) || []).length <= 15,
+  date: (v) => /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/.test(v),
+  gpa: (v) => {
+    const n = parseFloat(v.replace(',', '.'))
+    return !Number.isNaN(n) && n >= 0 && n <= 5
+  },
+  int: (v) => /^\d+$/.test(v),
+}
+
+// Which i18n message each validator shows on failure.
+const ERROR_MSG = { email: 'invalidEmail', phone: 'invalidPhone', date: 'invalidDate', gpa: 'invalidNumber', int: 'invalidNumber' }
+
+// Fields validated on each step.
+const STEP_FIELDS = {
+  1: ['fullName', 'email', 'whatsapp', 'dob'],
+  2: ['gpa', 'credits'],
+}
 
 function HintTooltip({ text }) {
   const [open, setOpen] = useState(false)
@@ -38,16 +82,18 @@ function HintTooltip({ text }) {
   )
 }
 
-function TextField({ label, value, error, required, requiredMsg, onChange, type = 'text', full = false, hint }) {
+function TextField({ label, value, error, required, onChange, type = 'text', inputMode, sanitize, full = false, hint }) {
   return (
     <div className={full ? 'sm:col-span-2' : ''}>
       <div className="relative">
         <input
           type={type}
+          inputMode={inputMode}
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(sanitize ? sanitize(e.target.value) : e.target.value)}
           placeholder={label + (required ? ' *' : '')}
           aria-label={label}
+          aria-invalid={!!error}
           className={`${inputClass} ${hint ? 'pr-11' : ''} ${error ? 'border-red-700 bg-red-700/10' : ''}`}
         />
         {hint && (
@@ -56,7 +102,7 @@ function TextField({ label, value, error, required, requiredMsg, onChange, type 
           </span>
         )}
       </div>
-      {error && <p className="mt-1 text-xs font-bold text-red-900">{requiredMsg}</p>}
+      {error && <p className="mt-1 text-xs font-bold text-red-900">{error}</p>}
     </div>
   )
 }
@@ -100,10 +146,20 @@ export default function ContactCTA() {
     if (errors[k]) setErrors((prev) => ({ ...prev, [k]: false }))
   }
 
-  const validateStep1 = () => {
+  const fieldError = (k) => {
+    const rule = RULES[k]
+    if (!rule) return null
+    const v = (values[k] || '').trim()
+    if (rule.required && !v) return c.required
+    if (v && rule.validate && !validators[rule.validate](v)) return c[ERROR_MSG[rule.validate]]
+    return null
+  }
+
+  const validateStep = (n) => {
     const next = {}
-    REQUIRED.forEach((k) => {
-      if (!values[k] || !String(values[k]).trim()) next[k] = true
+    STEP_FIELDS[n].forEach((k) => {
+      const e = fieldError(k)
+      if (e) next[k] = e
     })
     setErrors(next)
     return Object.keys(next).length === 0
@@ -111,7 +167,7 @@ export default function ContactCTA() {
 
   const goNext = (e) => {
     e.preventDefault()
-    if (validateStep1()) {
+    if (validateStep(1)) {
       setStep(2)
       document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -119,6 +175,7 @@ export default function ContactCTA() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!validateStep(2)) return
     setStatus('sending')
     try {
       await submitToGoogleForm(values)
@@ -129,18 +186,23 @@ export default function ContactCTA() {
   }
 
   // Stable helper — returns a <TextField> element wired to a field key.
-  const text = (k, opts = {}) => (
-    <TextField
-      key={k}
-      label={c.fields[k]}
-      value={values[k] || ''}
-      error={errors[k]}
-      required={REQUIRED.includes(k)}
-      requiredMsg={c.required}
-      onChange={(v) => setValue(k, v)}
-      {...opts}
-    />
-  )
+  const text = (k, opts = {}) => {
+    const rule = RULES[k] || {}
+    return (
+      <TextField
+        key={k}
+        label={c.fields[k]}
+        value={values[k] || ''}
+        error={errors[k]}
+        required={!!rule.required}
+        type={rule.type}
+        inputMode={rule.inputMode}
+        sanitize={rule.sanitize ? sanitizers[rule.sanitize] : undefined}
+        onChange={(v) => setValue(k, v)}
+        {...opts}
+      />
+    )
+  }
 
   return (
     <section id="apply" className="relative scroll-mt-24 overflow-hidden bg-flame py-24 text-ink lg:py-32">
@@ -157,15 +219,16 @@ export default function ContactCTA() {
 
           <Reveal delay={0.1}>
             {status === 'sent' ? (
-              <div className="flex min-h-[360px] flex-col items-center justify-center rounded-3xl border-2 border-ink/15 bg-ink/5 p-10 text-center">
+              <div className="flex min-h-[360px] flex-col items-center justify-center rounded-3xl border-2 border-ink/10 bg-white p-10 text-center shadow-xl">
                 <span className="font-display text-7xl">✓</span>
                 <p className="mt-4 text-xl font-bold">{c.sent}</p>
                 <p className="mt-1 text-sm font-semibold text-ink/65">{c.sentSub}</p>
               </div>
             ) : (
               <form
+                noValidate
                 onSubmit={step === 1 ? goNext : handleSubmit}
-                className="rounded-3xl border-2 border-ink/10 bg-bone/40 p-6 backdrop-blur-sm sm:p-8"
+                className="rounded-3xl border-2 border-ink/10 bg-white p-6 shadow-xl sm:p-8"
               >
                 {/* Step header + progress */}
                 <div className="mb-6">
@@ -187,8 +250,8 @@ export default function ContactCTA() {
                       {text('fullName', { full: true })}
                       {text('nationality')}
                       {text('dob')}
-                      {text('email', { type: 'email' })}
-                      {text('whatsapp', { type: 'tel' })}
+                      {text('email')}
+                      {text('whatsapp')}
                       {text('budget')}
                       {text('heightWeight')}
                       {text('address', { full: true, hint: c.addressHint })}
@@ -207,7 +270,7 @@ export default function ContactCTA() {
                       {text('school', { full: true })}
                       {text('background', { full: true })}
                       {text('schoolYear')}
-                      {text('credits')}
+                      {text('credits', { hint: c.creditsHint })}
                       {text('gpa')}
                       {text('majors')}
                       <RadioField

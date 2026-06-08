@@ -2,8 +2,7 @@
 
 import { Reveal, SectionTag, Heading } from './ui'
 import { useLang } from '@/lib/i18n'
-
-const icons = ['◎', '✈', '▶', '◈']
+import { serviceIcons } from './icons'
 
 export default function Services() {
   const { t } = useLang()
@@ -23,8 +22,11 @@ export default function Services() {
                 <div className="absolute right-4 top-4 font-display text-5xl text-line transition-colors group-hover:text-flame/20">
                   0{i + 1}
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-flame/10 text-2xl text-flame">
-                  {icons[i]}
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-flame/10 text-flame">
+                  {(() => {
+                    const Icon = serviceIcons[i]
+                    return <Icon className="h-6 w-6" />
+                  })()}
                 </div>
                 <h3 className="mt-6 font-display text-xl uppercase">{item.t}</h3>
                 <p className="mt-2 text-sm text-bone/55">{item.d}</p>

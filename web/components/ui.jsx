@@ -47,3 +47,16 @@ export function Heading({ children, className = '' }) {
     </h2>
   )
 }
+
+// Dotted matrix — a signature motif lifted from the PSA deck.
+export function DotMatrix({ className = '' }) {
+  return (
+    <div
+      className={className}
+      style={{
+        backgroundImage: 'radial-gradient(currentColor 1.5px, transparent 1.6px)',
+        backgroundSize: '15px 15px',
+      }}
+    />
+  )
+}

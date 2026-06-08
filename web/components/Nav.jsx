@@ -19,6 +19,7 @@ export default function Nav() {
     ['#about', t.nav.about],
     ['#services', t.nav.services],
     ['#programs', t.nav.programs],
+    ['#profile', t.nav.profile],
     ['#how', t.nav.how],
     ['#team', t.nav.team],
   ]

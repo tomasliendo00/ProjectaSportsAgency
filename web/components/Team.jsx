@@ -9,7 +9,7 @@ export default function Team() {
   return (
     <section id="team" className="relative scroll-mt-24 bg-surface py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal>
+        <Reveal className="flex flex-col items-center text-center">
           <SectionTag>{team.tag}</SectionTag>
           <Heading>{team.title}</Heading>
         </Reveal>

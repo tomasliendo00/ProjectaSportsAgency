@@ -1,10 +1,15 @@
 'use client'
 
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback, useEffect } from 'react'
 
 export const content = {
   es: {
-    nav: { about: 'Nosotros', services: 'Servicios', programs: 'Programas', how: 'Proceso', team: 'Equipo', cta: 'Postular' },
+    meta: {
+      title: 'Projecta Sports Agency | Becas y transferencias deportivas en USA',
+      description:
+        'Agencia deportiva que conecta tu talento futbolístico con becas universitarias en Estados Unidos. Te acompañamos en perfil deportivo, búsqueda universitaria, visa F-1 y elegibilidad NCAA, NAIA y NJCAA.',
+    },
+    nav: { about: 'Nosotros', services: 'Servicios', programs: 'Programas', profile: 'Jugador', how: 'Proceso', team: 'Equipo', cta: 'Postular' },
     hero: {
       kicker: 'Agencia Deportiva',
       title1: 'PROJECTA',
@@ -46,6 +51,22 @@ export const content = {
         { n: '02', t: 'Transfer Portal', d: 'Para jugadores ya situados en USA que buscan transferirse de una universidad a otra.' },
       ],
       assoc: ['NCAA', 'NAIA', 'NJCAA'],
+    },
+    player: {
+      kicker: 'Así te presentamos',
+      title: 'Perfil deportivo',
+      sub: 'La carta de presentación que armamos para cada jugador ante las universidades: ficha, métricas y video de análisis.',
+      name: 'Íñigo Capellán',
+      flag: 'es',
+      stats: [
+        { k: 'Posición', v: 'Medio ofensivo' },
+        { k: 'Edad', v: '21 años' },
+        { k: 'Altura', v: '175 cm' },
+        { k: 'Peso', v: '69 kg' },
+        { k: 'Pie', v: 'Derecho' },
+      ],
+      videoLabel: 'Análisis en video',
+      videoNote: 'Acciones etiquetadas y editadas para reclutadores.',
     },
     how: {
       tag: '04 — Cómo funciona',
@@ -99,7 +120,7 @@ export const content = {
         school: 'Institución actual (secundaria o universidad)',
         background: 'Trayectoria deportiva (equipos anteriores)',
         schoolYear: 'Año académico',
-        credits: 'Créditos obtenidos (últimos 2 semestres)',
+        credits: 'Créditos académicos',
         gpa: 'GPA',
         majors: 'Carrera(s)',
         term: 'Período al que aplicás',
@@ -114,6 +135,7 @@ export const content = {
         { label: 'Primavera (Spring)', value: 'Spring' },
       ],
       addressHint: 'Podrías recibir merchandising de Projecta.',
+      creditsHint: 'Total de créditos (credit hours) que obtuviste en tus últimos 2 semestres. Se usa para la elegibilidad de transferencia.',
       next: 'Continuar',
       back: 'Volver',
       submit: 'Enviar postulación',
@@ -122,6 +144,10 @@ export const content = {
       sentSub: 'Gracias por postularte a Projecta Sports Agency.',
       error: 'Hubo un problema al enviar. Probá de nuevo.',
       required: 'Completá este campo',
+      invalidEmail: 'Ingresá un email válido',
+      invalidPhone: 'Ingresá un número válido (solo dígitos)',
+      invalidDate: 'Usá el formato MM/DD/AAAA',
+      invalidNumber: 'Ingresá un número válido',
     },
     footer: {
       tagline: 'Becas y transferencias deportivas en USA.',
@@ -132,7 +158,12 @@ export const content = {
     },
   },
   en: {
-    nav: { about: 'About', services: 'Services', programs: 'Programs', how: 'Process', team: 'Team', cta: 'Apply' },
+    meta: {
+      title: 'Projecta Sports Agency | Athletic scholarships and transfers in the USA',
+      description:
+        'Sports agency connecting your football talent with university scholarships in the United States. We guide you through athletic profile, university search, F-1 visa and NCAA, NAIA and NJCAA eligibility.',
+    },
+    nav: { about: 'About', services: 'Services', programs: 'Programs', profile: 'Player', how: 'Process', team: 'Team', cta: 'Apply' },
     hero: {
       kicker: 'Sports Agency',
       title1: 'PROJECTA',
@@ -174,6 +205,22 @@ export const content = {
         { n: '02', t: 'Transfer Portal', d: 'For players already in the USA looking to transfer from one university to another.' },
       ],
       assoc: ['NCAA', 'NAIA', 'NJCAA'],
+    },
+    player: {
+      kicker: 'How we present you',
+      title: 'Athletic profile',
+      sub: 'The calling card we build for every player in front of US universities: data sheet, metrics and analysis footage.',
+      name: 'Íñigo Capellán',
+      flag: 'es',
+      stats: [
+        { k: 'Position', v: 'Attacking mid' },
+        { k: 'Age', v: '21 years' },
+        { k: 'Height', v: '175 cm' },
+        { k: 'Weight', v: '69 kg' },
+        { k: 'Foot', v: 'Right' },
+      ],
+      videoLabel: 'Video analysis',
+      videoNote: 'Tagged and edited actions for recruiters.',
     },
     how: {
       tag: '04 — How it works',
@@ -227,7 +274,7 @@ export const content = {
         school: 'Current school (high school or college)',
         background: 'Athletic background (previous teams)',
         schoolYear: 'School year',
-        credits: 'Total credits earned (last 2 semesters)',
+        credits: 'Academic credits',
         gpa: 'GPA',
         majors: 'Major(s)',
         term: 'Term applying to',
@@ -242,6 +289,7 @@ export const content = {
         { label: 'Spring', value: 'Spring' },
       ],
       addressHint: 'You may be receiving Projecta merch.',
+      creditsHint: 'Total credit hours you earned in your last 2 semesters. Used for transfer eligibility.',
       next: 'Continue',
       back: 'Back',
       submit: 'Submit application',
@@ -250,6 +298,10 @@ export const content = {
       sentSub: 'Thanks for applying to Projecta Sports Agency.',
       error: 'Something went wrong. Please try again.',
       required: 'Please fill this field',
+      invalidEmail: 'Enter a valid email',
+      invalidPhone: 'Enter a valid number (digits only)',
+      invalidDate: 'Use the MM/DD/YYYY format',
+      invalidNumber: 'Enter a valid number',
     },
     footer: {
       tagline: 'Athletic scholarships and transfers in the USA.',
@@ -265,13 +317,18 @@ const LanguageContext = createContext(null)
 
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState('es')
-  const toggle = useCallback(() => {
-    setLang((l) => {
-      const next = l === 'es' ? 'en' : 'es'
-      if (typeof document !== 'undefined') document.documentElement.lang = next
-      return next
-    })
-  }, [])
+  const toggle = useCallback(() => setLang((l) => (l === 'es' ? 'en' : 'es')), [])
+
+  // Keep the document <title>, meta description and <html lang> in sync with the
+  // active language (metadata is server-rendered in Spanish for SEO; this updates
+  // it client-side when the user toggles).
+  useEffect(() => {
+    document.documentElement.lang = lang
+    document.title = content[lang].meta.title
+    const desc = document.querySelector('meta[name="description"]')
+    if (desc) desc.setAttribute('content', content[lang].meta.description)
+  }, [lang])
+
   const t = content[lang]
   return (
     <LanguageContext.Provider value={{ lang, setLang, toggle, t }}>

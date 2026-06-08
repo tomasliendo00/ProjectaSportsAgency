@@ -13,7 +13,9 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <Logo full className="h-14" />
+            <a href="#top" aria-label="Projecta Sports Agency — ir al inicio" className="inline-block transition-opacity hover:opacity-80">
+              <Logo full className="h-14" />
+            </a>
             <p className="mt-4 max-w-xs text-sm text-bone/55">{f.tagline}</p>
           </div>
 
