@@ -22,8 +22,8 @@ export default function Requirements() {
             <Reveal key={i} delay={i * 0.08}>
               <div className="group flex items-center gap-6 rounded-2xl border border-line bg-surface p-7 transition-colors hover:border-flame/50">
                 <span className="font-display text-5xl text-flame">0{i + 1}</span>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-3">
                     <h3 className="font-display text-xl uppercase">{item.t}</h3>
                     {item.tag && (
                       <span className="rounded-full bg-flame/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-flame">

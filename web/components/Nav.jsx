@@ -32,17 +32,21 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Scroll to same-page anchors explicitly so navigation is reliable even
-  // when the mobile menu is collapsing. scrollIntoView honors each section's
-  // scroll-mt offset for the fixed header.
+  // Scroll to same-page anchors explicitly. The scroll is deferred to the
+  // next frame so it runs after the menu-close re-render / exit animation,
+  // which would otherwise swallow a scroll started in the same tick. We use
+  // window.scrollTo with a fixed-header offset instead of scrollIntoView,
+  // which proved unreliable in this flow.
   const goTo = (e, href) => {
     e.preventDefault()
-    setOpen(false)
     const el = document.querySelector(href)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+    setOpen(false)
+    if (!el) return
+    requestAnimationFrame(() => {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80
+      window.scrollTo({ top, behavior: 'smooth' })
       window.history.replaceState(null, '', href)
-    }
+    })
   }
 
   const links = [
