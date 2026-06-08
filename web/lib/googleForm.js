@@ -31,22 +31,19 @@ export const FIELD_ENTRIES = {
   term: 'entry.321152572', // radio: "Fall" | "Spring"
 }
 
-// Submits the collected values to the Google Form.
-// Uses no-cors: Google does not return CORS headers, so the response is
-// opaque (we cannot read it), but the submission is recorded. We therefore
-// treat a resolved request as success.
+// Submits the collected values via our own API route, which forwards them to
+// the Google Form server-side. A browser request to Google must use no-cors
+// and gets an opaque response (always "success"); going through the server
+// lets us read Google's real status and surface a truthful failure. Throws on
+// any failure so the caller can show an error state.
 export async function submitToGoogleForm(values) {
-  const body = new URLSearchParams()
-  for (const [key, entry] of Object.entries(FIELD_ENTRIES)) {
-    const value = values[key]
-    if (value != null && String(value).trim() !== '') {
-      body.append(entry, value)
-    }
-  }
-  await fetch(GOOGLE_FORM_ACTION, {
+  const res = await fetch('/api/submit-profile', {
     method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: body.toString(),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(values),
   })
+  const data = await res.json().catch(() => null)
+  if (!res.ok || !data?.ok) {
+    throw new Error(data?.reason || `submit_failed_${res.status}`)
+  }
 }
