@@ -206,7 +206,6 @@ export default function ContactCTA() {
 
   return (
     <section id="apply" className="relative scroll-mt-24 overflow-hidden bg-flame py-24 text-ink lg:py-32">
-      <div className="stripes pointer-events-none absolute right-0 top-0 h-full w-40 opacity-10" style={{ '--stripe': '#0A0A0B' }} />
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <Reveal>
