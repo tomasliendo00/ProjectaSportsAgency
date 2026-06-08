@@ -13,7 +13,7 @@ import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <div className="grain relative min-h-screen bg-ink">
+    <div className="grain relative min-h-screen overflow-x-clip bg-ink">
       <Nav />
       <main>
         <Hero />
