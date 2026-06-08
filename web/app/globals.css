@@ -8,11 +8,15 @@
 
 html {
   scroll-behavior: smooth;
+  /* Clip stray horizontal overflow at the root. `clip` (not `hidden`)
+     avoids creating a scroll container, so vertical scroll and sticky
+     positioning stay intact. */
+  overflow-x: clip;
 }
 
 body {
   @apply bg-ink text-bone font-sans antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Diagonal stripe motif lifted from the PSA deck */
