@@ -33,11 +33,14 @@ export async function POST(request) {
       signal: controller.signal,
     })
     const text = await res.text().catch(() => '')
-    // A successful submit returns 200 + a minimal confirmation page. A closed
-    // form, a validation error or a wrong form id re-renders the form page,
-    // which still embeds FB_PUBLIC_LOAD_DATA_ — treat that (or any non-2xx)
-    // as a failure.
-    const recorded = res.ok && !text.includes('FB_PUBLIC_LOAD_DATA_')
+    // A successful submit returns 200 + the confirmation page ("Se registró
+    // tu respuesta" / "Your response has been recorded"). A closed form, a
+    // validation error or a wrong id returns a page without that message.
+    // (Note: the confirmation page DOES embed FB_PUBLIC_LOAD_DATA_, so that
+    // can't be used as a signal.)
+    const CONFIRMATION =
+      /registró tu respuesta|tu respuesta se ha registrado|response has been recorded|respuesta se ha registrado|sua resposta foi registrada/i
+    const recorded = res.ok && CONFIRMATION.test(text)
     if (!recorded) {
       return NextResponse.json(
         { ok: false, reason: `google_${res.status}` },
