@@ -25,7 +25,10 @@ export default function Footer() {
               <li><a href="#about" className="hover:text-flame">{nav.about}</a></li>
               <li><a href="#services" className="hover:text-flame">{nav.services}</a></li>
               <li><a href="#programs" className="hover:text-flame">{nav.programs}</a></li>
+              <li><a href="#profile" className="hover:text-flame">{nav.profile}</a></li>
+              <li><a href="#how" className="hover:text-flame">{nav.how}</a></li>
               <li><a href="#team" className="hover:text-flame">{nav.team}</a></li>
+              <li><a href="#apply" className="hover:text-flame">{nav.cta}</a></li>
             </ul>
           </div>
 

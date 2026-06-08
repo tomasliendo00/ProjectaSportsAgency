@@ -45,11 +45,21 @@ export default function Nav() {
     setOpen(false)
     if (!el) return
     setTimeout(() => {
-      const nav = document.querySelector('header nav')
-      const navH = nav ? nav.getBoundingClientRect().height : 72
-      const padTop = parseFloat(getComputedStyle(el).paddingTop) || 0
-      const gap = 16 // breathing room between navbar and the section content
-      const top = el.getBoundingClientRect().top + window.scrollY + padTop - navH - gap
+      const base = el.getBoundingClientRect().top + window.scrollY
+      let top
+      if (window.matchMedia('(min-width: 1024px)').matches) {
+        // Desktop: match the footer links' native scroll, i.e. land the
+        // section top at its scroll-margin-top (leaves the same air).
+        const smt = parseFloat(getComputedStyle(el).scrollMarginTop) || 0
+        top = base - smt
+      } else {
+        // Mobile: skip the section's top padding so the title sits just
+        // under the navbar with a small gap.
+        const nav = document.querySelector('header nav')
+        const navH = nav ? nav.getBoundingClientRect().height : 72
+        const padTop = parseFloat(getComputedStyle(el).paddingTop) || 0
+        top = base + padTop - navH - 16
+      }
       window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
       window.history.replaceState(null, '', href)
     }, 0)
