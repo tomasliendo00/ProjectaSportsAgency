@@ -22,9 +22,11 @@ export default function Requirements() {
                 <div className="flex-1">
                   <div className="flex items-center gap-3">
                     <h3 className="font-display text-xl uppercase">{item.t}</h3>
-                    <span className="rounded-full bg-flame/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-flame">
-                      {item.tag}
-                    </span>
+                    {item.tag && (
+                      <span className="rounded-full bg-flame/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-flame">
+                        {item.tag}
+                      </span>
+                    )}
                   </div>
                   <p className="mt-1 text-sm text-bone/55">{item.d}</p>
                 </div>

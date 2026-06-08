@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion'
 
-export function Logo({ className = '' }) {
+export function Logo({ className = 'h-7', full = false }) {
   return (
-    <span className={`inline-flex items-baseline gap-[2px] font-display text-2xl tracking-tight ${className}`}>
-      <span className="relative">
-        <span className="text-flame">P</span>
-        <span className="text-bone">SA</span>
-      </span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={full ? '/logo-full.png' : '/logo-psa.png'}
+      alt="Projecta Sports Agency"
+      className={`w-auto ${className}`}
+    />
   )
 }
 

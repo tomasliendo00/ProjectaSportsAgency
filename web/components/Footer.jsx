@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <Logo className="text-3xl" />
+            <Logo full className="h-14" />
             <p className="mt-4 max-w-xs text-sm text-bone/55">{f.tagline}</p>
           </div>
 
@@ -30,10 +30,10 @@ export default function Footer() {
           <div>
             <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-bone/40">{f.social}</h4>
             <ul className="space-y-2 text-sm text-bone/70">
-              <li><a href="#" className="hover:text-flame">Instagram</a></li>
-              <li><a href="#" className="hover:text-flame">TikTok</a></li>
-              <li><a href="#" className="hover:text-flame">WhatsApp</a></li>
-              <li><a href="mailto:hola@projectasports.com" className="hover:text-flame">Email</a></li>
+              <li><a href="https://www.instagram.com/projectasports/" className="hover:text-flame">Instagram</a></li>
+              <li><a href="#" className="hover:text-flame">TikTok [FALTA LINK]</a></li>
+              <li><a href="#" className="hover:text-flame">WhatsApp [FALTA LINK]</a></li>
+              <li><a href="mailto:hola@projectasports.com" className="hover:text-flame">Email [FALTA LINK]</a></li>
             </ul>
           </div>
         </div>
