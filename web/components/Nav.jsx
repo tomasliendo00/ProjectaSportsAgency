@@ -1,8 +1,25 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Logo } from './ui'
 import { useLang } from '@/lib/i18n'
+
+const ease = [0.22, 1, 0.36, 1]
+
+const menuVariants = {
+  closed: { height: 0, opacity: 0, transition: { duration: 0.28, ease } },
+  open: {
+    height: 'auto',
+    opacity: 1,
+    transition: { duration: 0.35, ease, staggerChildren: 0.05, delayChildren: 0.1 },
+  },
+}
+
+const itemVariants = {
+  closed: { opacity: 0, y: -8 },
+  open: { opacity: 1, y: 0, transition: { duration: 0.25, ease } },
+}
 
 export default function Nav() {
   const { t, lang, toggle } = useLang()
@@ -33,7 +50,7 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         <a href="#top" className="shrink-0"><Logo /></a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {links.map(([href, label]) => (
             <a
               key={href}
@@ -57,37 +74,63 @@ export default function Nav() {
 
           <a
             href="#apply"
-            className="hidden rounded-full bg-flame px-5 py-2 text-sm font-bold text-ink transition-transform hover:scale-105 sm:inline-block"
+            className="hidden rounded-full bg-flame px-5 py-2 text-sm font-bold text-ink transition-transform hover:scale-105 lg:inline-block"
           >
             {t.nav.cta}
           </a>
 
           <button
-            className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] md:hidden"
+            className="flex h-11 w-11 flex-col items-center justify-center gap-[5px] rounded-full bg-flame text-ink shadow-lg shadow-flame/20 lg:hidden"
             onClick={() => setOpen((o) => !o)}
             aria-label="Menu"
+            aria-expanded={open}
           >
-            <span className={`h-[2px] w-5 bg-bone transition-transform ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
-            <span className={`h-[2px] w-5 bg-bone transition-opacity ${open ? 'opacity-0' : ''}`} />
-            <span className={`h-[2px] w-5 bg-bone transition-transform ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
+            <span className={`h-[2.5px] w-5 rounded-full bg-ink transition-transform ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
+            <span className={`h-[2.5px] w-5 rounded-full bg-ink transition-opacity ${open ? 'opacity-0' : ''}`} />
+            <span className={`h-[2.5px] w-5 rounded-full bg-ink transition-transform ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
           </button>
         </div>
       </nav>
 
-      {open && (
-        <div className="border-t border-line bg-ink/95 px-5 py-4 md:hidden">
-          {links.map(([href, label]) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className="block py-2 text-base font-semibold text-bone/80"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            variants={menuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="overflow-hidden border-t border-line bg-ink/95 backdrop-blur-md lg:hidden"
+          >
+            <div className="px-5 py-4">
+              {links.map(([href, label]) => (
+                <motion.a
+                  key={href}
+                  variants={itemVariants}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="block py-2.5 text-base font-semibold text-bone/80"
+                >
+                  {label}
+                </motion.a>
+              ))}
+
+              <motion.div
+                variants={itemVariants}
+                className="mt-3 border-t border-line pt-4"
+              >
+                <a
+                  href="#apply"
+                  onClick={() => setOpen(false)}
+                  className="block rounded-full bg-flame px-5 py-2.5 text-center text-sm font-bold text-ink"
+                >
+                  {t.nav.cta}
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

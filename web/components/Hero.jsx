@@ -18,10 +18,10 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-24">
-      {/* Bold diagonal stripe band — deck motif (replaces generic blur glows) */}
-      <div className="stripes pointer-events-none absolute -right-8 -top-4 h-52 w-80 opacity-90" style={{ '--stripe': '#FF5A1F' }} />
-      <div className="stripes pointer-events-none absolute right-44 -top-10 h-52 w-32 opacity-25" style={{ '--stripe': '#F4F2EE' }} />
-      <div className="pointer-events-none absolute -right-40 top-1/4 h-[1px] w-[120%] -rotate-[18deg] bg-gradient-to-r from-transparent via-flame/30 to-transparent" />
+      {/* Bold diagonal stripe band — deck motif (desktop only; clutters the navbar on mobile) */}
+      <div className="stripes pointer-events-none absolute -right-8 -top-4 hidden h-52 w-80 opacity-90 lg:block" style={{ '--stripe': '#FF5A1F' }} />
+      <div className="stripes pointer-events-none absolute right-44 -top-10 hidden h-52 w-32 opacity-25 lg:block" style={{ '--stripe': '#F4F2EE' }} />
+      <div className="pointer-events-none absolute -right-40 top-1/4 hidden h-[1px] w-[120%] -rotate-[18deg] bg-gradient-to-r from-transparent via-flame/30 to-transparent lg:block" />
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <motion.div

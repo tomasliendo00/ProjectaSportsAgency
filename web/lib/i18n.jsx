@@ -9,7 +9,7 @@ export const content = {
       description:
         'Agencia deportiva que conecta tu talento futbolístico con becas universitarias en Estados Unidos. Te acompañamos en perfil deportivo, búsqueda universitaria, visa F-1 y elegibilidad NCAA, NAIA y NJCAA.',
     },
-    nav: { about: 'Nosotros', services: 'Servicios', programs: 'Programas', profile: 'Jugador', how: 'Proceso', team: 'Equipo', cta: 'Postular' },
+    nav: { about: 'Nosotros', services: 'Servicios', programs: 'Programas', profile: 'Perfil', how: 'Proceso', team: 'Equipo', cta: 'Postular' },
     hero: {
       kicker: 'Agencia Deportiva',
       title1: 'PROJECTA',
@@ -163,7 +163,7 @@ export const content = {
       description:
         'Sports agency connecting your football talent with university scholarships in the United States. We guide you through athletic profile, university search, F-1 visa and NCAA, NAIA and NJCAA eligibility.',
     },
-    nav: { about: 'About', services: 'Services', programs: 'Programs', profile: 'Player', how: 'Process', team: 'Team', cta: 'Apply' },
+    nav: { about: 'About', services: 'Services', programs: 'Programs', profile: 'Profile', how: 'Process', team: 'Team', cta: 'Apply' },
     hero: {
       kicker: 'Sports Agency',
       title1: 'PROJECTA',
