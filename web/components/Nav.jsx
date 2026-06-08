@@ -32,21 +32,22 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Scroll to same-page anchors explicitly. The scroll is deferred to the
-  // next frame so it runs after the menu-close re-render / exit animation,
-  // which would otherwise swallow a scroll started in the same tick. We use
-  // window.scrollTo with a fixed-header offset instead of scrollIntoView,
-  // which proved unreliable in this flow.
+  // Scroll to same-page anchors explicitly. The scroll is deferred with
+  // setTimeout (a macrotask, not requestAnimationFrame) so it runs after
+  // framer-motion releases the tap's pointer capture; otherwise the
+  // programmatic scroll is cancelled on touch and nothing moves. We use
+  // window.scrollTo with a fixed-header offset (scrollIntoView proved
+  // unreliable in this flow).
   const goTo = (e, href) => {
     e.preventDefault()
     const el = document.querySelector(href)
     setOpen(false)
     if (!el) return
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       const top = el.getBoundingClientRect().top + window.scrollY - 80
       window.scrollTo({ top, behavior: 'smooth' })
       window.history.replaceState(null, '', href)
-    })
+    }, 0)
   }
 
   const links = [
