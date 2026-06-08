@@ -35,17 +35,22 @@ export default function Nav() {
   // Scroll to same-page anchors explicitly. The scroll is deferred with
   // setTimeout (a macrotask, not requestAnimationFrame) so it runs after
   // framer-motion releases the tap's pointer capture; otherwise the
-  // programmatic scroll is cancelled on touch and nothing moves. We use
-  // window.scrollTo with a fixed-header offset (scrollIntoView proved
-  // unreliable in this flow).
+  // programmatic scroll is cancelled on touch and nothing moves.
+  // We skip most of the section's large top padding so the title lands
+  // just under the navbar instead of leaving a big empty gap. navbar
+  // height and section padding are read live so it works on mobile/desktop.
   const goTo = (e, href) => {
     e.preventDefault()
     const el = document.querySelector(href)
     setOpen(false)
     if (!el) return
     setTimeout(() => {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80
-      window.scrollTo({ top, behavior: 'smooth' })
+      const nav = document.querySelector('header nav')
+      const navH = nav ? nav.getBoundingClientRect().height : 72
+      const padTop = parseFloat(getComputedStyle(el).paddingTop) || 0
+      const gap = 16 // breathing room between navbar and the section content
+      const top = el.getBoundingClientRect().top + window.scrollY + padTop - navH - gap
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
       window.history.replaceState(null, '', href)
     }, 0)
   }
