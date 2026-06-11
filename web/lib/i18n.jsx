@@ -92,9 +92,9 @@ export const content = {
       tag: '06 — Equipo',
       title: 'Team Projecta',
       members: [
-        { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', photo: '/team/cristobal.jpg', initials: 'CC' },
-        { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', photo: '/team/mateo.jpg', initials: 'MV' },
-        { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', photo: '/team/pedro.jpg', initials: 'PS' },
+        { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', photo: '/team/cristobal.jpg', initials: 'CC', bio: 'Comenzó su camino hacia los EE.UU. en Sport Academy, en Santiago de Chile. Compitió como estudiante-atleta en York University of Nebraska y Judson University durante 4 años, combinando el alto rendimiento deportivo con una destacada formación académica. Se graduó con doble titulación en Gestión Deportiva y Contabilidad.' },
+        { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', photo: '/team/mateo.jpg', initials: 'MV', bio: 'Comenzó en las divisiones inferiores de Talleres de Córdoba, Argentina, antes de trasladarse a los EE.UU.. Durante 4 años se desempeñó como mediocampista ofensivo en Judson University, donde fue un referente del equipo. Obtuvo una Licenciatura en Ciencias del Ejercicio y el Deporte.' },
+        { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', photo: '/team/pedro.jpg', initials: 'PS', bio: 'Desarrolló su trayectoria académica y deportiva en Williams Baptist University, Harry S. Truman College y Judson University. Combinó la competencia de alto nivel en fútbol con una formación en Administración de Empresas, fortaleciendo habilidades de liderazgo y trabajo en equipo en entornos multiculturales.' },
       ],
     },
     cta: {
@@ -246,9 +246,9 @@ export const content = {
       tag: '06 — Team',
       title: 'Team Projecta',
       members: [
-        { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', photo: '/team/cristobal.jpg', initials: 'CC' },
-        { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', photo: '/team/mateo.jpg', initials: 'MV' },
-        { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', photo: '/team/pedro.jpg', initials: 'PS' },
+        { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', photo: '/team/cristobal.jpg', initials: 'CC', bio: 'Started his path to the US at Sport Academy in Santiago, Chile. Competed as a student-athlete at York University of Nebraska and Judson University for 4 years, balancing high-level athletics with outstanding academic performance. Graduated with a double degree in Sport Management and Accounting.' },
+        { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', photo: '/team/mateo.jpg', initials: 'MV', bio: 'Started in the youth divisions of Talleres de Córdoba, Argentina, before moving to the US. Played as an attacking midfielder at Judson University for 4 years, becoming a key figure on the team. Earned a Bachelor\'s degree in Exercise and Sports Science.' },
+        { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', photo: '/team/pedro.jpg', initials: 'PS', bio: 'Built his academic and athletic career across Williams Baptist University, Harry S. Truman College, and Judson University. Combined high-level soccer competition with a Business Management degree, developing leadership, teamwork, and adaptability in multicultural environments.' },
       ],
     },
     cta: {
