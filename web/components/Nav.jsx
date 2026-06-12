@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Logo } from './ui'
 import { useLang } from '@/lib/i18n'
@@ -25,10 +25,28 @@ export default function Nav() {
   const { t, lang, toggle } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+  const linkRefs = useRef({})
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const ids = ['about', 'services', 'programs', 'how', 'requirements', 'team', 'testimonials', 'apply']
+    const onScroll = () => {
+      const threshold = window.scrollY + window.innerHeight * 0.4
+      let active = ''
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (el && el.offsetTop <= threshold) active = id
+      }
+      setActiveSection(active)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -47,18 +65,12 @@ export default function Nav() {
     setTimeout(() => {
       const base = el.getBoundingClientRect().top + window.scrollY
       let top
-      if (window.matchMedia('(min-width: 1024px)').matches) {
-        // Desktop: match the footer links' native scroll, i.e. land the
-        // section top at its scroll-margin-top (leaves the same air).
-        const smt = parseFloat(getComputedStyle(el).scrollMarginTop) || 0
-        top = base - smt
-      } else {
-        // Mobile: skip the section's top padding so the title sits just
-        // under the navbar with a small gap.
+      {
         const nav = document.querySelector('header nav')
         const navH = nav ? nav.getBoundingClientRect().height : 72
         const padTop = parseFloat(getComputedStyle(el).paddingTop) || 0
-        top = base + padTop - navH - 16
+        const gap = window.matchMedia('(min-width: 1024px)').matches ? 50 : 16
+        top = base + padTop - navH - gap
       }
       window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
       window.history.replaceState(null, '', href)
@@ -69,9 +81,10 @@ export default function Nav() {
     ['#about', t.nav.about],
     ['#services', t.nav.services],
     ['#programs', t.nav.programs],
-    ['#profile', t.nav.profile],
     ['#how', t.nav.how],
+    ['#requirements', t.nav.requirements],
     ['#team', t.nav.team],
+    ['#testimonials', t.nav.testimonials],
   ]
 
   return (
@@ -83,17 +96,30 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         <a href="#top" onClick={(e) => goTo(e, '#top')} className="shrink-0"><Logo /></a>
 
-        <div className="hidden items-center gap-8 lg:flex">
+        <div className="relative hidden items-center gap-8 lg:flex">
           {links.map(([href, label]) => (
             <a
               key={href}
+              ref={(el) => { linkRefs.current[href.slice(1)] = el }}
               href={href}
               onClick={(e) => goTo(e, href)}
-              className="text-sm font-semibold text-bone/70 transition-colors hover:text-bone"
+              className={`text-sm font-semibold transition-colors duration-300 ${activeSection === href.slice(1) ? 'text-bone' : 'text-bone/70 hover:text-bone'}`}
             >
               {label}
             </a>
           ))}
+          <span
+            className="pointer-events-none absolute top-full mt-1 h-0.5 rounded-full bg-flame transition-all duration-300 ease-out"
+            style={(() => {
+              const activeRef = linkRefs.current[activeSection]
+              if (activeRef) return { left: activeRef.offsetLeft, width: activeRef.offsetWidth, opacity: 1 }
+              if (activeSection === 'apply') {
+                const last = linkRefs.current['testimonials']
+                return { left: (last?.offsetLeft ?? 0) + (last?.offsetWidth ?? 0), width: 0, opacity: 0 }
+              }
+              return { left: 0, width: 0, opacity: 0 }
+            })()}
+          />
         </div>
 
         <div className="flex items-center gap-3">

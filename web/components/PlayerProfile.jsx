@@ -14,7 +14,7 @@ export default function PlayerProfile() {
     <section id="profile" className="relative scroll-mt-24 overflow-hidden py-24 lg:py-32">
       {/* Bold diagonal band — deck motif, not a generic glow */}
       <div className="pointer-events-none absolute -right-32 top-0 h-full w-[70%] -skew-x-12 bg-gradient-to-l from-flame/12 via-flame/5 to-transparent" />
-      <div className="stripes pointer-events-none absolute -right-10 top-10 h-40 w-72 opacity-70" style={{ '--stripe': '#FF5A1F' }} />
+      <div className="stripes pointer-events-none absolute -right-10 top-10 hidden h-40 w-72 opacity-70 lg:block" style={{ '--stripe': '#FF5A1F' }} />
       {/* Dotted matrix — deck signature */}
       <DotMatrix className="pointer-events-none absolute left-6 top-24 h-20 w-32 text-flame/40" />
 

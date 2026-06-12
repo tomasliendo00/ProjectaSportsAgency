@@ -21,10 +21,10 @@ export default function About() {
             </Reveal>
           </div>
 
-          <div className="flex flex-col justify-center gap-px overflow-hidden rounded-2xl border border-line bg-line">
+          <div className="flex flex-col gap-px overflow-hidden rounded-2xl border border-line bg-line">
             {a.points.map((p, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div className="group flex gap-5 bg-surface p-7 transition-colors hover:bg-surface2">
+              <Reveal key={i} delay={i * 0.1} className="flex-1">
+                <div className="group flex h-full gap-5 bg-surface p-7 transition-colors hover:bg-surface2">
                   <ArrowMark className="mt-1 h-6 w-6 shrink-0 text-flame transition-transform group-hover:translate-x-0.5" />
                   <p className="text-lg font-semibold leading-snug">{p}</p>
                 </div>

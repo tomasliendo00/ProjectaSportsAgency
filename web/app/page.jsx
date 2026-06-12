@@ -8,6 +8,7 @@ import PlayerProfile from '@/components/PlayerProfile'
 import HowItWorks from '@/components/HowItWorks'
 import Requirements from '@/components/Requirements'
 import Team from '@/components/Team'
+import Testimonials from '@/components/Testimonials'
 import ContactCTA from '@/components/ContactCTA'
 import Footer from '@/components/Footer'
 
@@ -25,6 +26,7 @@ export default function Home() {
         <HowItWorks />
         <Requirements />
         <Team />
+        <Testimonials />
         <ContactCTA />
       </main>
       <Footer />

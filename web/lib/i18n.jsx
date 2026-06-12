@@ -9,7 +9,7 @@ export const content = {
       description:
         'Agencia deportiva que conecta tu talento futbolístico con becas universitarias en Estados Unidos. Te acompañamos en perfil deportivo, búsqueda universitaria, visa F-1 y elegibilidad NCAA, NAIA y NJCAA.',
     },
-    nav: { about: 'Nosotros', services: 'Servicios', programs: 'Programas', profile: 'Perfil', how: 'Proceso', team: 'Equipo', cta: 'Postular' },
+    nav: { about: 'Nosotros', services: 'Servicios', programs: 'Programas', how: 'Proceso', requirements: 'Requisitos', team: 'Equipo', testimonials: 'Testimonios', cta: 'Postular' },
     hero: {
       kicker: 'Agencia Deportiva',
       title1: 'PROJECTA',
@@ -97,6 +97,16 @@ export const content = {
         { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', photo: '/team/pedro.jpg', initials: 'PS', bio: 'Desarrolló su trayectoria académica y deportiva en Williams Baptist University, Harry S. Truman College y Judson University. Combinó la competencia de alto nivel en fútbol con una formación en Administración de Empresas, fortaleciendo habilidades de liderazgo y trabajo en equipo en entornos multiculturales.' },
       ],
     },
+    testimonials: {
+      tag: '07 — Testimonios',
+      title: 'Lo que dicen nuestros jugadores',
+      items: [
+        { name: 'Tim de Kraker', flag: 'nl', country: 'Países Bajos', quote: 'Estudiar y jugar en EEUU fue una de las mejores decisiones que tomé. Me ayudó a crecer tanto como jugador como persona.' },
+        { name: 'Mark Leavy', flag: 'ie', country: 'Irlanda', quote: 'La experiencia me permitió obtener un título universitario, competir a un gran nivel y crear amistades de todo el mundo.' },
+        { name: 'Tiago Aguiar', flag: 'br', country: 'Brasil', quote: 'Jugar al fútbol universitario en EEUU me abrió puertas que nunca imaginé y me preparó para mi futuro dentro y fuera del deporte.' },
+        { name: 'Javier Roca', flag: 'es', country: 'España', quote: 'Combinar estudios y fútbol en EEUU me permitió desarrollarme dentro y fuera de la cancha mientras conocía una nueva cultura.' },
+      ],
+    },
     cta: {
       tag: 'Da el primer paso',
       title: 'Tu sueño empieza con una conversación',
@@ -163,7 +173,7 @@ export const content = {
       description:
         'Sports agency connecting your football talent with university scholarships in the United States. We guide you through athletic profile, university search, F-1 visa and NCAA, NAIA and NJCAA eligibility.',
     },
-    nav: { about: 'About', services: 'Services', programs: 'Programs', profile: 'Profile', how: 'Process', team: 'Team', cta: 'Apply' },
+    nav: { about: 'About', services: 'Services', programs: 'Programs', how: 'Process', requirements: 'Requirements', team: 'Team', testimonials: 'Testimonials', cta: 'Apply' },
     hero: {
       kicker: 'Sports Agency',
       title1: 'PROJECTA',
@@ -249,6 +259,16 @@ export const content = {
         { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', photo: '/team/cristobal.jpg', initials: 'CC', bio: 'Started his path to the US at Sport Academy in Santiago, Chile. Competed as a student-athlete at York University of Nebraska and Judson University for 4 years, balancing high-level athletics with outstanding academic performance. Graduated with a double degree in Sport Management and Accounting.' },
         { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', photo: '/team/mateo.jpg', initials: 'MV', bio: 'Started in the youth divisions of Talleres de Córdoba, Argentina, before moving to the US. Played as an attacking midfielder at Judson University for 4 years, becoming a key figure on the team. Earned a Bachelor\'s degree in Exercise and Sports Science.' },
         { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', photo: '/team/pedro.jpg', initials: 'PS', bio: 'Built his academic and athletic career across Williams Baptist University, Harry S. Truman College, and Judson University. Combined high-level soccer competition with a Business Management degree, developing leadership, teamwork, and adaptability in multicultural environments.' },
+      ],
+    },
+    testimonials: {
+      tag: '07 — Testimonials',
+      title: 'What our players say',
+      items: [
+        { name: 'Tim de Kraker', flag: 'nl', country: 'Netherlands', quote: 'Studying and playing in the US was one of the best decisions I made. It helped me grow both as a player and as a person.' },
+        { name: 'Mark Leavy', flag: 'ie', country: 'Ireland', quote: 'The experience allowed me to earn a university degree, compete at a high level and build friendships from all over the world.' },
+        { name: 'Tiago Aguiar', flag: 'br', country: 'Brazil', quote: 'Playing college soccer in the US opened doors I never imagined and prepared me for my future on and off the pitch.' },
+        { name: 'Javier Roca', flag: 'es', country: 'Spain', quote: 'Combining studies and football in the US allowed me to develop on and off the field while discovering a new culture.' },
       ],
     },
     cta: {
