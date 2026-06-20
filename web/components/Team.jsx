@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Reveal, SectionTag, Heading } from './ui'
 import { useLang } from '@/lib/i18n'
 
@@ -20,12 +21,12 @@ function TeamCard({ m, i }) {
         {/* Front */}
         <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
           <div className="mx-auto h-32 w-32 overflow-hidden rounded-full border-2 border-line bg-surface2 transition-colors group-hover:border-flame">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={m.photo}
               alt={m.name}
               width={128}
               height={128}
+              sizes="128px"
               className="h-full w-full object-cover object-center"
             />
           </div>
@@ -33,7 +34,7 @@ function TeamCard({ m, i }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`/flags/${m.flag}.svg`}
-              alt=""
+              alt={m.country}
               width={24}
               height={18}
               className="h-4 w-6 rounded-[3px] object-cover shadow-sm ring-1 ring-line"
@@ -51,7 +52,7 @@ function TeamCard({ m, i }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`/flags/${m.flag}.svg`}
-              alt=""
+              alt={m.country}
               width={24}
               height={18}
               className="h-4 w-6 rounded-[3px] object-cover shadow-sm ring-1 ring-line"

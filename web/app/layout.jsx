@@ -15,7 +15,9 @@ const manrope = Manrope({
   display: 'swap',
 })
 
-const SITE_URL = 'https://projectasports.com'
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -33,6 +35,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_ES',
+    alternateLocale: 'en_US',
     url: SITE_URL,
     siteName: 'Projecta Sports Agency',
     title: 'Projecta Sports Agency — Becas y transferencias deportivas en USA',
@@ -58,10 +61,30 @@ export const viewport = {
   themeColor: '#0A0A0B',
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Projecta Sports Agency',
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon.png`,
+  description:
+    'Agencia deportiva que conecta tu talento futbolístico con becas universitarias en Estados Unidos. Te acompañamos en perfil deportivo, búsqueda universitaria, visa F-1 y elegibilidad NCAA, NAIA y NJCAA.',
+  sameAs: ['https://www.instagram.com/projectasports/'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'hola@projectasports.com',
+    contactType: 'customer service',
+  },
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${anton.variable} ${manrope.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

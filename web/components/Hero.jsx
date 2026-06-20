@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useLang } from '@/lib/i18n'
 import { DotMatrix } from './ui'
@@ -98,20 +99,22 @@ export default function Hero() {
             className="relative mx-auto h-[340px] w-full max-w-md sm:h-[420px] lg:mx-0 lg:ml-auto"
           >
             <div className="stripes pointer-events-none absolute -right-5 -top-5 z-0 h-28 w-36 opacity-80" style={{ '--stripe': '#FF5A1F' }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/hero/duel.jpg"
-              alt=""
+              alt={h.imgAlt1}
               width={800}
               height={450}
+              priority
+              sizes="(min-width: 1024px) 28vw, 56vw"
               className="absolute bottom-0 left-0 z-10 h-[86%] w-[56%] rounded-2xl object-cover shadow-2xl ring-1 ring-line"
             />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/hero/grad.jpg"
-              alt=""
+              alt={h.imgAlt2}
               width={1000}
               height={700}
+              priority
+              sizes="(min-width: 1024px) 24vw, 48vw"
               className="absolute right-0 top-0 z-20 h-[66%] w-[48%] rounded-2xl object-cover shadow-2xl ring-1 ring-line"
             />
           </motion.div>

@@ -1,13 +1,16 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-export function Logo({ className = 'h-7', full = false }) {
+export function Logo({ className = 'h-7', full = false, priority = false }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src={full ? '/logo-full.png' : '/logo-psa.png'}
       alt="Projecta Sports Agency"
+      width={604}
+      height={full ? 230 : 160}
+      priority={priority}
       className={`w-auto ${className}`}
     />
   )

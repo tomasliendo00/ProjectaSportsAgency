@@ -9,7 +9,7 @@ export const content = {
       description:
         'Agencia deportiva que conecta tu talento futbolístico con becas universitarias en Estados Unidos. Te acompañamos en perfil deportivo, búsqueda universitaria, visa F-1 y elegibilidad NCAA, NAIA y NJCAA.',
     },
-    nav: { about: 'Nosotros', services: 'Servicios', programs: 'Programas', how: 'Proceso', requirements: 'Requisitos', team: 'Equipo', testimonials: 'Testimonios', cta: 'Postular' },
+    nav: { about: 'Nosotros', services: 'Servicios', programs: 'Programas', profile: 'Perfil', how: 'Proceso', requirements: 'Requisitos', team: 'Equipo', testimonials: 'Testimonios', cta: 'Postular' },
     hero: {
       kicker: 'Agencia Deportiva',
       title1: 'PROJECTA',
@@ -21,6 +21,8 @@ export const content = {
       stat1: '+5', stat1l: 'años de experiencia',
       stat2: '3', stat2l: 'asociaciones (NCAA · NAIA · NJCAA)',
       stat3: 'F-1', stat3l: 'gestión de visa estudiantil',
+      imgAlt1: 'Jugador disputando el balón en un partido universitario en Estados Unidos',
+      imgAlt2: 'Estudiante-atleta graduándose en una universidad de Estados Unidos',
     },
     marquee: ['BECAS', 'TRANSFER PORTAL', 'VISA F-1', 'NCAA', 'NAIA', 'NJCAA', 'PERFIL DEPORTIVO', 'RECLUTAMIENTO'],
     about: {
@@ -58,6 +60,7 @@ export const content = {
       sub: 'La carta de presentación que armamos para cada jugador ante las universidades: ficha, métricas y video de análisis.',
       name: 'Íñigo Capellán',
       flag: 'es',
+      country: 'España',
       stats: [
         { k: 'Posición', v: 'Medio ofensivo' },
         { k: 'Edad', v: '21 años' },
@@ -92,9 +95,9 @@ export const content = {
       tag: '06 — Equipo',
       title: 'Team Projecta',
       members: [
-        { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', photo: '/team/cristobal.jpg', initials: 'CC', bio: 'Comenzó su camino hacia los EE.UU. en Sport Academy, en Santiago de Chile. Compitió como estudiante-atleta en York University of Nebraska y Judson University durante 4 años, combinando el alto rendimiento deportivo con una destacada formación académica. Se graduó con doble titulación en Gestión Deportiva y Contabilidad.' },
-        { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', photo: '/team/mateo.jpg', initials: 'MV', bio: 'Comenzó en las divisiones inferiores de Talleres de Córdoba, Argentina, antes de trasladarse a los EE.UU.. Durante 4 años se desempeñó como mediocampista ofensivo en Judson University, donde fue un referente del equipo. Obtuvo una Licenciatura en Ciencias del Ejercicio y el Deporte.' },
-        { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', photo: '/team/pedro.jpg', initials: 'PS', bio: 'Desarrolló su trayectoria académica y deportiva en Williams Baptist University, Harry S. Truman College y Judson University. Combinó la competencia de alto nivel en fútbol con una formación en Administración de Empresas, fortaleciendo habilidades de liderazgo y trabajo en equipo en entornos multiculturales.' },
+        { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', country: 'Chile', photo: '/team/cristobal.jpg', initials: 'CC', bio: 'Comenzó su camino hacia los EE.UU. en Sport Academy, en Santiago de Chile. Compitió como estudiante-atleta en York University of Nebraska y Judson University durante 4 años, combinando el alto rendimiento deportivo con una destacada formación académica. Se graduó con doble titulación en Gestión Deportiva y Contabilidad.' },
+        { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', country: 'Argentina', photo: '/team/mateo.jpg', initials: 'MV', bio: 'Comenzó en las divisiones inferiores de Talleres de Córdoba, Argentina, antes de trasladarse a los EE.UU.. Durante 4 años se desempeñó como mediocampista ofensivo en Judson University, donde fue un referente del equipo. Obtuvo una Licenciatura en Ciencias del Ejercicio y el Deporte.' },
+        { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', country: 'Brasil', photo: '/team/pedro.jpg', initials: 'PS', bio: 'Desarrolló su trayectoria académica y deportiva en Williams Baptist University, Harry S. Truman College y Judson University. Combinó la competencia de alto nivel en fútbol con una formación en Administración de Empresas, fortaleciendo habilidades de liderazgo y trabajo en equipo en entornos multiculturales.' },
       ],
     },
     testimonials: {
@@ -173,7 +176,7 @@ export const content = {
       description:
         'Sports agency connecting your football talent with university scholarships in the United States. We guide you through athletic profile, university search, F-1 visa and NCAA, NAIA and NJCAA eligibility.',
     },
-    nav: { about: 'About', services: 'Services', programs: 'Programs', how: 'Process', requirements: 'Requirements', team: 'Team', testimonials: 'Testimonials', cta: 'Apply' },
+    nav: { about: 'About', services: 'Services', programs: 'Programs', profile: 'Profile', how: 'Process', requirements: 'Requirements', team: 'Team', testimonials: 'Testimonials', cta: 'Apply' },
     hero: {
       kicker: 'Sports Agency',
       title1: 'PROJECTA',
@@ -185,6 +188,8 @@ export const content = {
       stat1: '+5', stat1l: 'years of experience',
       stat2: '3', stat2l: 'associations (NCAA · NAIA · NJCAA)',
       stat3: 'F-1', stat3l: 'student visa handling',
+      imgAlt1: 'Player contesting the ball in a US college soccer match',
+      imgAlt2: 'Student-athlete graduating from a US university',
     },
     marquee: ['SCHOLARSHIPS', 'TRANSFER PORTAL', 'F-1 VISA', 'NCAA', 'NAIA', 'NJCAA', 'ATHLETIC PROFILE', 'RECRUITMENT'],
     about: {
@@ -222,6 +227,7 @@ export const content = {
       sub: 'The calling card we build for every player in front of US universities: data sheet, metrics and analysis footage.',
       name: 'Íñigo Capellán',
       flag: 'es',
+      country: 'Spain',
       stats: [
         { k: 'Position', v: 'Attacking mid' },
         { k: 'Age', v: '21 years' },
@@ -256,9 +262,9 @@ export const content = {
       tag: '06 — Team',
       title: 'Team Projecta',
       members: [
-        { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', photo: '/team/cristobal.jpg', initials: 'CC', bio: 'Started his path to the US at Sport Academy in Santiago, Chile. Competed as a student-athlete at York University of Nebraska and Judson University for 4 years, balancing high-level athletics with outstanding academic performance. Graduated with a double degree in Sport Management and Accounting.' },
-        { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', photo: '/team/mateo.jpg', initials: 'MV', bio: 'Started in the youth divisions of Talleres de Córdoba, Argentina, before moving to the US. Played as an attacking midfielder at Judson University for 4 years, becoming a key figure on the team. Earned a Bachelor\'s degree in Exercise and Sports Science.' },
-        { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', photo: '/team/pedro.jpg', initials: 'PS', bio: 'Built his academic and athletic career across Williams Baptist University, Harry S. Truman College, and Judson University. Combined high-level soccer competition with a Business Management degree, developing leadership, teamwork, and adaptability in multicultural environments.' },
+        { name: 'Cristóbal Corral', role: 'Co-Founder & Agent', flag: 'cl', country: 'Chile', photo: '/team/cristobal.jpg', initials: 'CC', bio: 'Started his path to the US at Sport Academy in Santiago, Chile. Competed as a student-athlete at York University of Nebraska and Judson University for 4 years, balancing high-level athletics with outstanding academic performance. Graduated with a double degree in Sport Management and Accounting.' },
+        { name: 'Mateo Vadora', role: 'Co-Founder & Agent', flag: 'ar', country: 'Argentina', photo: '/team/mateo.jpg', initials: 'MV', bio: 'Started in the youth divisions of Talleres de Córdoba, Argentina, before moving to the US. Played as an attacking midfielder at Judson University for 4 years, becoming a key figure on the team. Earned a Bachelor\'s degree in Exercise and Sports Science.' },
+        { name: 'Pedro Storani', role: 'Recruiting Coordinator', flag: 'br', country: 'Brazil', photo: '/team/pedro.jpg', initials: 'PS', bio: 'Built his academic and athletic career across Williams Baptist University, Harry S. Truman College, and Judson University. Combined high-level soccer competition with a Business Management degree, developing leadership, teamwork, and adaptability in multicultural environments.' },
       ],
     },
     testimonials: {

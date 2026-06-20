@@ -20,7 +20,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-bone/40">{f.nav}</h4>
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-bone/50">{f.nav}</h3>
             <ul className="space-y-2 text-sm text-bone/70">
               <li><a href="#about" className="hover:text-flame">{nav.about}</a></li>
               <li><a href="#services" className="hover:text-flame">{nav.services}</a></li>
@@ -33,7 +33,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-bone/40">{f.social}</h4>
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-bone/50">{f.social}</h3>
             <ul className="space-y-2 text-sm text-bone/70">
               <li><a href="https://www.instagram.com/projectasports/" className="hover:text-flame">Instagram</a></li>
               <li><a href="#" className="hover:text-flame">TikTok [FALTA LINK]</a></li>
@@ -43,9 +43,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-line pt-6 text-xs text-bone/40 sm:flex-row sm:items-center">
+        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-line pt-6 text-xs text-bone/50 sm:flex-row sm:items-center">
           <span>© {new Date().getFullYear()} Projecta Sports Agency. {f.rights}</span>
-          <span className="font-display tracking-wide text-bone/30">PROJECTA · SPORTS · AGENCY</span>
+          <span className="font-display tracking-wide text-bone/50">PROJECTA · SPORTS · AGENCY</span>
         </div>
       </div>
     </footer>

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useLang } from '@/lib/i18n'
 import { DotMatrix } from './ui'
@@ -41,12 +42,12 @@ export default function PlayerProfile() {
             transition={{ duration: 0.8, ease }}
             className="relative lg:col-span-7"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/player/inigo.jpg"
               alt={p.name}
               width={1100}
               height={733}
+              sizes="(min-width: 1024px) 58vw, 100vw"
               className="relative w-full max-w-2xl drop-shadow-2xl"
             />
           </motion.div>
@@ -64,7 +65,7 @@ export default function PlayerProfile() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/flags/${p.flag}.svg`}
-                  alt=""
+                  alt={p.country}
                   width={28}
                   height={21}
                   className="h-5 w-7 rounded-[3px] object-cover ring-1 ring-line"
@@ -91,13 +92,13 @@ export default function PlayerProfile() {
               </div>
               <div className="flex gap-3">
                 {['clip1', 'clip2'].map((clip, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     key={clip}
                     src={`/player/${clip}.jpg`}
-                    alt={p.videoLabel}
+                    alt={`${p.videoLabel} ${i + 1}`}
                     width={760}
                     height={351}
+                    sizes="(min-width: 1024px) 29vw, 50vw"
                     className={`w-1/2 rounded-xl border border-line object-cover shadow-lg transition-transform hover:scale-[1.03] ${
                       i === 0 ? '-rotate-1' : 'rotate-1'
                     }`}

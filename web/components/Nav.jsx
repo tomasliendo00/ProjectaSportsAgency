@@ -94,7 +94,7 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        <a href="#top" onClick={(e) => goTo(e, '#top')} className="shrink-0"><Logo /></a>
+        <a href="#top" onClick={(e) => goTo(e, '#top')} className="shrink-0"><Logo priority /></a>
 
         <div className="relative hidden items-center gap-8 lg:flex">
           {links.map(([href, label]) => (
