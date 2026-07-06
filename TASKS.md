@@ -32,22 +32,32 @@ Esto activa obligaciones de protección de datos por:
 
 ## Tareas — Implementación (las puede hacer Claude)
 
-- [x] **Checkbox de consentimiento** obligatorio en el formulario antes de enviar
-      (ej: "Acepto la Política de Privacidad"), con link a la página.
+- [x] **Checkbox de consentimiento** obligatorio en el formulario antes de enviar,
+      con link a `/privacidad`. Bloquea el envío si no está marcado.
 - [x] **Links en el footer** → Política de Privacidad y Términos y Condiciones.
-- [x] **Página `/privacidad`** con plantilla base bilingüe (ES/EN).
-- [x] **Página `/terminos`** con plantilla base bilingüe (ES/EN).
+- [x] **Página `/privacidad`** bilingüe (ES/EN). 11 secciones: datos recolectados,
+      finalidad, base legal, Google como tercero, conservación, derechos, menores, GDPR.
+- [x] **Página `/terminos`** bilingüe (ES/EN). 10 secciones: objeto, servicios,
+      ausencia de garantía de resultados, veracidad, PI, limitación de responsabilidad.
+- [x] **Página 404** (`/app/not-found.jsx`) para rutas inexistentes, con diseño de marca.
+- [x] **`LegalHeader`** — header simplificado para páginas legales (logo → `/`,
+      toggle de idioma, botón Postular → `/#apply`).
 - [ ] (Opcional) Nota breve junto al form aclarando que los datos se procesan vía Google.
 
-## Tareas — Contenido legal (requiere abogado / Projecta)
+## Tareas — Contenido legal (borrador hecho por Claude, requiere validación)
 
-- [ ] Redactar/validar el **texto real** de la Política de Privacidad:
-      qué datos se recolectan, finalidad, que se almacenan en Google, plazo de
-      conservación, cómo ejercer derechos (acceso/rectificación/borrado), contacto.
-- [ ] Redactar/validar el **texto real** de los Términos y Condiciones
-      (alcance del servicio, responsabilidades, pagos, limitación de responsabilidad).
-- [ ] Definir el **email/contacto de protección de datos** (ej: privacidad@projectasports.com).
-- [ ] Confirmar manejo de **datos de menores de edad** (consentimiento de padres/tutores).
+- [x] Borrador de **Política de Privacidad** redactado y publicado en `/privacidad`.
+      Cubre: datos recolectados, finalidad, Google Forms como encargado, conservación,
+      derechos ARCO, menores de edad, GDPR para usuarios de la UE.
+- [x] Borrador de **Términos y Condiciones** redactado y publicado en `/terminos`.
+      Cubre: naturaleza del servicio, ausencia de garantía, veracidad de datos,
+      propiedad intelectual, limitación de responsabilidad, ley aplicable.
+- [ ] **Validar ambos textos con un profesional legal** antes de considerar el contenido
+      definitivo. Email de contacto provisional: hola@projectasports.com.
+- [ ] Definir **email dedicado de protección de datos**
+      (ej: privacidad@projectasports.com) y actualizar los textos.
+- [ ] Confirmar manejo de **datos de menores de edad** con Projecta
+      (la cláusula existe pero requiere confirmación del proceso interno).
 
 ## Relacionado — Derechos de imagen (mismo profesional puede revisarlo)
 
@@ -66,4 +76,105 @@ Esto activa obligaciones de protección de datos por:
 
 ---
 
-_Creado: 2026-06-08_
+## Infraestructura — Dominio y despliegue _(completado 2026-07-06)_
+
+- [x] Dominio **projectasports.com** comprado en Namecheap (con WhoisGuard activado).
+- [x] Proyecto hosteado en **Vercel** con deploy automático desde `main`.
+- [x] DNS configurado en Namecheap: registro A (raíz) + CNAME (www) apuntando a Vercel.
+- [x] Certificado SSL activo (HTTPS). Sitio live en https://projectasports.com.
+
+---
+
+## Auditoría web _(squirrelscan v0.0.64 · 2026-07-06 · score: 49/100 F)_
+
+> Auditoría corrida sobre https://www.projectasports.com (3 páginas crawleadas).
+> Score objetivo: 90+ (Grado A). Todo lo marcado como "Claude" es implementable en código.
+
+### Errores críticos — 7 fallos
+
+- [x] **Sitemap apunta al dominio viejo de Vercel** `landing-projecta-plee6v1om-...vercel.app`
+      en lugar de `www.projectasports.com`. Causa: `NEXT_PUBLIC_SITE_URL` no está seteada
+      en Vercel y `VERCEL_URL` devuelve la URL de preview.
+      **Fix:** setear `NEXT_PUBLIC_SITE_URL=https://www.projectasports.com` en las env vars
+      de Vercel (Production), o hardcodear el dominio en `sitemap.js` como fallback. _(Claude)_
+
+- [x] **Sitemap inválido** — mismo origen que el punto anterior; el sitemap referenciado
+      es el del dominio de preview, no el de producción. Se resuelve junto con el punto anterior. _(Claude)_
+
+- [x] **4 imágenes de banderas sin alt text** — `/flags/br.svg`, `/flags/es.svg`,
+      `/flags/ie.svg`, `/flags/nl.svg`. Afecta accesibilidad y SEO de imágenes.
+      **Fix:** agregar `alt` descriptivo en cada componente que use estas imágenes. _(Claude)_
+
+- [x] **Botón de idioma inaccessible** — texto visible renderizado como `"ESEN"` (ES+EN
+      concatenados sin separación), no coincide con `aria-label="toggle language"`.
+      **Fix:** agregar `aria-hidden="true"` a los spans ES/EN en `Nav.jsx` y `LegalHeader.jsx`. _(Claude)_
+
+- [x] **Tooltip "?" con aria-label incorrecto** — el `aria-label` del botón de ayuda en
+      `ContactCTA.jsx` contiene el texto del hint en lugar de una descripción del botón.
+      **Fix:** agregar `aria-hidden="true"` al carácter "?" visible en `ContactCTA.jsx`. _(Claude)_
+
+- [ ] **Páginas sin lifetime de caché** — las 3 páginas devuelven headers sin
+      `Cache-Control`. Impacta performance score.
+      **Fix:** configurar headers de caché en `next.config.mjs`. _(Claude)_
+
+- [ ] **Imagen hero sin `fetchpriority="high"`** — la imagen LCP (`/hero/duel.jpg`) se
+      carga sin prioridad alta, retrasando el LCP.
+      **Fix:** agregar `priority` prop (Next.js Image) o `fetchpriority="high"` en `Hero.jsx`. _(Claude)_
+
+### Warnings — 14 mejoras
+
+#### SEO / Metadata
+- [x] **Meta description demasiado larga** (201 chars, límite recomendado: 155-160).
+      Afecta las 3 páginas porque `/privacidad` y `/terminos` heredan la descripción del
+      root layout. **Fix:** acortar en `layout.jsx` y agregar metadata propia en cada
+      página legal. _(Claude)_
+
+- [x] **Título duplicado** en `/`, `/privacidad` y `/terminos` — las 3 comparten el mismo
+      `<title>`. **Fix:** exportar `metadata` con título único en cada página legal. _(Claude)_
+
+- [x] **Descripción duplicada** — mismo problema que el título.
+      **Fix:** exportar `metadata` con descripción única en cada página legal. _(Claude)_
+
+- [x] **Canonical URL faltante** en las 3 páginas.
+      **Fix:** agregar `alternates: { canonical: '/' }` en metadata de cada página. _(Claude)_
+
+- [x] **`/privacidad` y `/terminos` no están en el sitemap**.
+      **Fix:** agregar ambas rutas en `sitemap.js`. _(Claude)_
+
+#### Performance
+- [ ] **11 imágenes de banderas sin `loading="lazy"`** — banderas de países en secciones
+      below-the-fold se cargan de inmediato. **Fix:** agregar lazy loading en los
+      componentes que renderizan flags. _(Claude)_
+
+- [ ] **LCP hints faltantes** — imágenes probables de LCP en `/privacidad` y `/terminos`
+      (el logo del LegalHeader) sin preload. **Fix:** agregar `priority` al `<Logo>` en
+      `LegalHeader.jsx`. _(Claude)_
+
+- [ ] **1 archivo JS aparentemente sin minificar** — `1hp3-t76m72lu.js` (191.6 KB,
+      ~158 KB de ahorro estimado). Probablemente una dependencia de terceros. Investigar
+      si es un false positive de Next.js/Vercel build. _(Claude — investigar)_
+
+#### Seguridad
+- [ ] **Sin header `X-Frame-Options`** — sin protección contra clickjacking.
+      **Fix:** agregar en `next.config.mjs`. _(Claude)_
+
+- [ ] **Sin `Content-Security-Policy`** — header de seguridad recomendado. Complejo de
+      configurar sin romper cosas; requiere prueba cuidadosa. _(Claude — con cuidado)_
+
+- [ ] **Formulario sin CAPTCHA** — el form de postulación es público y sin protección
+      anti-bot. **Fix:** integrar Cloudflare Turnstile u hCaptcha (servicio externo). _(Requiere decisión)_
+
+#### Legal
+- [ ] **Sin disclosure de sub-procesadores (DPA)** — no se encontró mención explícita de
+      acuerdos de procesamiento de datos con terceros. Podría resolverse agregando una
+      sección a `/privacidad`. _(Claude / Legal)_
+
+#### E-E-A-T (Expertise, Authoritativeness, Trustworthiness)
+- [ ] **Sin página `/about` dedicada** — el scanner no reconoce la sección `#about`
+      como página independiente. Bajo impacto para este tipo de sitio. _(Decisión UX)_
+
+- [ ] **Sin página `/contact` dedicada** — ídem anterior. _(Decisión UX)_
+
+---
+
+_Creado: 2026-06-08 · Última actualización: 2026-07-06_

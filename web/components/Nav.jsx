@@ -128,8 +128,8 @@ export default function Nav() {
             className="group flex items-center rounded-full border border-line p-[3px] text-xs font-bold"
             aria-label="Toggle language"
           >
-            <span className={`rounded-full px-2 py-1 transition-colors ${lang === 'es' ? 'bg-flame text-ink' : 'text-bone/60'}`}>ES</span>
-            <span className={`rounded-full px-2 py-1 transition-colors ${lang === 'en' ? 'bg-flame text-ink' : 'text-bone/60'}`}>EN</span>
+            <span aria-hidden="true" className={`rounded-full px-2 py-1 transition-colors ${lang === 'es' ? 'bg-flame text-ink' : 'text-bone/60'}`}>ES</span>
+            <span aria-hidden="true" className={`rounded-full px-2 py-1 transition-colors ${lang === 'en' ? 'bg-flame text-ink' : 'text-bone/60'}`}>EN</span>
           </button>
 
           <a

@@ -67,7 +67,7 @@ function HintTooltip({ text }) {
         aria-label={text}
         className="flex h-5 w-5 items-center justify-center rounded-full border border-ink/40 text-[11px] font-bold leading-none text-ink/60 transition-colors hover:border-ink hover:text-ink"
       >
-        ?
+        <span aria-hidden="true">?</span>
       </button>
       {open && (
         <span

@@ -17,16 +17,19 @@ const manrope = Manrope({
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
+  'https://www.projectasports.com'
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: 'Projecta Sports Agency | Becas y transferencias deportivas en USA',
     template: '%s · Projecta Sports Agency',
   },
   description:
-    'Agencia deportiva que conecta tu talento futbolístico con becas universitarias en Estados Unidos. Te acompañamos en perfil deportivo, búsqueda universitaria, visa F-1 y elegibilidad NCAA, NAIA y NJCAA.',
+    'Agencia deportiva especializada en becas y transferencias futbolísticas a universidades de EE.UU. Perfil deportivo, visa F-1 y elegibilidad NCAA, NAIA y NJCAA.',
   keywords: [
     'becas deportivas USA', 'becas de fútbol', 'NCAA', 'NAIA', 'NJCAA',
     'visa F-1', 'transfer portal', 'agencia deportiva', 'reclutamiento universitario',
