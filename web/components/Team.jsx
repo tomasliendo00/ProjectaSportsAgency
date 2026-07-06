@@ -37,6 +37,7 @@ function TeamCard({ m, i }) {
               alt={m.country}
               width={24}
               height={18}
+              loading="lazy"
               className="h-4 w-6 rounded-[3px] object-cover shadow-sm ring-1 ring-line"
             />
             <h3 className="font-display text-2xl uppercase">{m.name}</h3>
@@ -55,6 +56,7 @@ function TeamCard({ m, i }) {
               alt={m.country}
               width={24}
               height={18}
+              loading="lazy"
               className="h-4 w-6 rounded-[3px] object-cover shadow-sm ring-1 ring-line"
             />
             <h3 className="font-display text-xl uppercase">{m.name}</h3>

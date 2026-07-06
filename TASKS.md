@@ -113,13 +113,13 @@ Esto activa obligaciones de protección de datos por:
       `ContactCTA.jsx` contiene el texto del hint en lugar de una descripción del botón.
       **Fix:** agregar `aria-hidden="true"` al carácter "?" visible en `ContactCTA.jsx`. _(Claude)_
 
-- [ ] **Páginas sin lifetime de caché** — las 3 páginas devuelven headers sin
+- [x] **Páginas sin lifetime de caché** — las 3 páginas devuelven headers sin
       `Cache-Control`. Impacta performance score.
       **Fix:** configurar headers de caché en `next.config.mjs`. _(Claude)_
 
-- [ ] **Imagen hero sin `fetchpriority="high"`** — la imagen LCP (`/hero/duel.jpg`) se
-      carga sin prioridad alta, retrasando el LCP.
-      **Fix:** agregar `priority` prop (Next.js Image) o `fetchpriority="high"` en `Hero.jsx`. _(Claude)_
+- [x] **Imagen hero sin `fetchpriority="high"`** — falso positivo: ambas imágenes del hero
+      ya tenían `priority` prop en `Hero.jsx`, lo que Next.js convierte en `fetchpriority="high"`.
+      No requirió cambios. _(Claude — investigado)_
 
 ### Warnings — 14 mejoras
 
@@ -142,24 +142,25 @@ Esto activa obligaciones de protección de datos por:
       **Fix:** agregar ambas rutas en `sitemap.js`. _(Claude)_
 
 #### Performance
-- [ ] **11 imágenes de banderas sin `loading="lazy"`** — banderas de países en secciones
-      below-the-fold se cargan de inmediato. **Fix:** agregar lazy loading en los
-      componentes que renderizan flags. _(Claude)_
+- [x] **11 imágenes de banderas sin `loading="lazy"`** — banderas de países en secciones
+      below-the-fold se cargan de inmediato. **Fix:** agregado `loading="lazy"` en
+      `PlayerProfile.jsx`, `Team.jsx` y `Testimonials.jsx`. _(Claude)_
 
-- [ ] **LCP hints faltantes** — imágenes probables de LCP en `/privacidad` y `/terminos`
-      (el logo del LegalHeader) sin preload. **Fix:** agregar `priority` al `<Logo>` en
-      `LegalHeader.jsx`. _(Claude)_
+- [x] **LCP hints faltantes** — el `<Logo>` en `LegalHeader.jsx` ya tenía `priority` prop
+      desde su creación. Falso positivo del scanner en el deploy anterior. _(Claude — investigado)_
 
 - [ ] **1 archivo JS aparentemente sin minificar** — `1hp3-t76m72lu.js` (191.6 KB,
-      ~158 KB de ahorro estimado). Probablemente una dependencia de terceros. Investigar
-      si es un false positive de Next.js/Vercel build. _(Claude — investigar)_
+      ~158 KB de ahorro estimado). Probablemente una dependencia de terceros (framer-motion).
+      Investigar si es un false positive de Next.js/Vercel build. _(Claude — investigar)_
 
 #### Seguridad
-- [ ] **Sin header `X-Frame-Options`** — sin protección contra clickjacking.
-      **Fix:** agregar en `next.config.mjs`. _(Claude)_
+- [x] **Sin header `X-Frame-Options`** — sin protección contra clickjacking.
+      **Fix:** agregado `X-Frame-Options: SAMEORIGIN` junto con `X-Content-Type-Options`,
+      `Referrer-Policy` y `Permissions-Policy` en `next.config.mjs`. _(Claude)_
 
 - [ ] **Sin `Content-Security-Policy`** — header de seguridad recomendado. Complejo de
-      configurar sin romper cosas; requiere prueba cuidadosa. _(Claude — con cuidado)_
+      configurar sin romper cosas; requiere prueba cuidadosa. Dejado para después del
+      lanzamiento oficial. _(Claude — pendiente)_
 
 - [ ] **Formulario sin CAPTCHA** — el form de postulación es público y sin protección
       anti-bot. **Fix:** integrar Cloudflare Turnstile u hCaptcha (servicio externo). _(Requiere decisión)_

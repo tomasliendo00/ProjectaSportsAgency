@@ -68,6 +68,7 @@ export default function PlayerProfile() {
                   alt={p.country}
                   width={28}
                   height={21}
+                  loading="lazy"
                   className="h-5 w-7 rounded-[3px] object-cover ring-1 ring-line"
                 />
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-flame">{p.title}</span>
