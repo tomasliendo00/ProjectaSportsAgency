@@ -32,11 +32,11 @@ Esto activa obligaciones de protección de datos por:
 
 ## Tareas — Implementación (las puede hacer Claude)
 
-- [ ] **Checkbox de consentimiento** obligatorio en el formulario antes de enviar
+- [x] **Checkbox de consentimiento** obligatorio en el formulario antes de enviar
       (ej: "Acepto la Política de Privacidad"), con link a la página.
-- [ ] **Links en el footer** → Política de Privacidad y Términos y Condiciones.
-- [ ] **Página `/privacidad`** con plantilla base bilingüe (ES/EN).
-- [ ] **Página `/terminos`** con plantilla base bilingüe (ES/EN).
+- [x] **Links en el footer** → Política de Privacidad y Términos y Condiciones.
+- [x] **Página `/privacidad`** con plantilla base bilingüe (ES/EN).
+- [x] **Página `/terminos`** con plantilla base bilingüe (ES/EN).
 - [ ] (Opcional) Nota breve junto al form aclarando que los datos se procesan vía Google.
 
 ## Tareas — Contenido legal (requiere abogado / Projecta)

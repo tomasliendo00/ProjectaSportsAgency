@@ -45,7 +45,11 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-line pt-6 text-xs text-bone/50 sm:flex-row sm:items-center">
           <span>© {new Date().getFullYear()} Projecta Sports Agency. {f.rights}</span>
-          <span className="font-display tracking-wide text-bone/50">PROJECTA · SPORTS · AGENCY</span>
+          <div className="flex flex-wrap items-center gap-4">
+            <a href="/privacidad" className="transition-colors hover:text-bone">{f.privacy}</a>
+            <a href="/terminos" className="transition-colors hover:text-bone">{f.terms}</a>
+            <span className="font-display tracking-wide text-bone/50">PROJECTA · SPORTS · AGENCY</span>
+          </div>
         </div>
       </div>
     </footer>

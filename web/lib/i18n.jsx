@@ -161,6 +161,10 @@ export const content = {
       invalidPhone: 'Ingresá un número válido (solo dígitos)',
       invalidDate: 'Usá el formato MM/DD/AAAA',
       invalidNumber: 'Ingresá un número válido',
+      consent: 'Acepto la ',
+      consentLink: 'Política de Privacidad',
+      consentEnd: ' y autorizo el uso de mis datos para evaluar mi candidatura.',
+      consentRequired: 'Debés aceptar la política de privacidad para continuar.',
     },
     footer: {
       tagline: 'Becas y transferencias deportivas en USA.',
@@ -168,6 +172,8 @@ export const content = {
       contact: 'Contacto',
       social: 'Redes',
       rights: 'Todos los derechos reservados.',
+      privacy: 'Política de Privacidad',
+      terms: 'Términos y Condiciones',
     },
   },
   en: {
@@ -328,6 +334,10 @@ export const content = {
       invalidPhone: 'Enter a valid number (digits only)',
       invalidDate: 'Use the MM/DD/YYYY format',
       invalidNumber: 'Enter a valid number',
+      consent: 'I accept the ',
+      consentLink: 'Privacy Policy',
+      consentEnd: ' and authorize the use of my data to evaluate my application.',
+      consentRequired: 'You must accept the privacy policy to continue.',
     },
     footer: {
       tagline: 'Athletic scholarships and transfers in the USA.',
@@ -335,6 +345,8 @@ export const content = {
       contact: 'Contact',
       social: 'Social',
       rights: 'All rights reserved.',
+      privacy: 'Privacy Policy',
+      terms: 'Terms & Conditions',
     },
   },
 }

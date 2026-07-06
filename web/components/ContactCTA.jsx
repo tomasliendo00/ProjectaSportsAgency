@@ -140,6 +140,8 @@ export default function ContactCTA() {
   const [values, setValues] = useState({})
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [consented, setConsented] = useState(false)
+  const [consentError, setConsentError] = useState(false)
 
   const setValue = (k, v) => {
     setValues((prev) => ({ ...prev, [k]: v }))
@@ -175,6 +177,10 @@ export default function ContactCTA() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!consented) {
+      setConsentError(true)
+      return
+    }
     if (!validateStep(2)) return
     setStatus('sending')
     try {
@@ -282,6 +288,32 @@ export default function ContactCTA() {
                     </>
                   )}
                 </div>
+
+                {step === 2 && (
+                  <div className="sm:col-span-2 mt-2">
+                    <label className="flex cursor-pointer items-start gap-3">
+                      <input
+                        type="checkbox"
+                        checked={consented}
+                        onChange={(e) => {
+                          setConsented(e.target.checked)
+                          if (e.target.checked) setConsentError(false)
+                        }}
+                        className="mt-0.5 h-4 w-4 shrink-0 accent-ink"
+                      />
+                      <span className="text-sm text-ink/70">
+                        {c.consent}
+                        <a href="/privacidad" target="_blank" rel="noopener noreferrer" className="underline hover:text-ink">
+                          {c.consentLink}
+                        </a>
+                        {c.consentEnd}
+                      </span>
+                    </label>
+                    {consentError && (
+                      <p className="mt-1 text-xs font-bold text-red-900">{c.consentRequired}</p>
+                    )}
+                  </div>
+                )}
 
                 {status === 'error' && <p className="mt-4 text-sm font-bold text-red-900">{c.error}</p>}
 
