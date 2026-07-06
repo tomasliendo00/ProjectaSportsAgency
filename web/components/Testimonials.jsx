@@ -13,7 +13,7 @@ function TestimonialCard({ item, i }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`/flags/${item.flag}.svg`}
-            alt={item.country}
+            alt=""
             width={24}
             height={18}
             loading="lazy"

@@ -52,22 +52,15 @@ Esto activa obligaciones de protección de datos por:
 - [x] Borrador de **Términos y Condiciones** redactado y publicado en `/terminos`.
       Cubre: naturaleza del servicio, ausencia de garantía, veracidad de datos,
       propiedad intelectual, limitación de responsabilidad, ley aplicable.
-- [ ] **Validar ambos textos con un profesional legal** antes de considerar el contenido
-      definitivo. Email de contacto provisional: hola@projectasports.com.
+- ~~Validar ambos textos con un profesional legal~~ _(desestimado)_
 - [ ] Definir **email dedicado de protección de datos**
       (ej: privacidad@projectasports.com) y actualizar los textos.
 - [ ] Confirmar manejo de **datos de menores de edad** con Projecta
       (la cláusula existe pero requiere confirmación del proceso interno).
 
-## Relacionado — Derechos de imagen (mismo profesional puede revisarlo)
+## Relacionado — Derechos de imagen _(desestimado)_
 
-- [ ] Confirmar **consentimiento / derechos** sobre las fotos de personas reales usadas
-      públicamente en la web:
-  - [ ] Íñigo Capellán (sección Perfil de Jugador + fotos)
-  - [ ] Foto del duelo de jugadores (hero)
-  - [ ] Foto de graduación (hero)
-  - [ ] Fotos del equipo (Cristóbal, Mateo, Pedro)
-  - Verificar si eran **stock** (revisar licencia) o propias de Projecta.
+~~Confirmar consentimiento / derechos sobre las fotos de personas reales usadas en la web.~~
 
 ## Pendiente futuro (no urgente ahora)
 
