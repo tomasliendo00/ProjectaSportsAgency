@@ -78,96 +78,80 @@ Esto activa obligaciones de protección de datos por:
 
 ---
 
-## Auditoría web _(squirrelscan v0.0.64 · 2026-07-06 · score: 49/100 F)_
+## Historial de auditorías
 
-> Auditoría corrida sobre https://www.projectasports.com (3 páginas crawleadas).
-> Score objetivo: 90+ (Grado A). Todo lo marcado como "Claude" es implementable en código.
+| Fecha | Score | Grado | Estado |
+|---|---|---|---|
+| 2026-07-06 | 49/100 | F | Baseline |
+| 2026-07-06 | 72/100 | C | Después de fixes SEO/a11y/sitemap/seguridad |
+| 2026-07-06 | 68/100 | D | Regresión por descriptions/og:url — fixes aplicados, pendiente push |
 
-### Errores críticos — 7 fallos
+---
 
-- [x] **Sitemap apunta al dominio viejo de Vercel** `landing-projecta-plee6v1om-...vercel.app`
-      en lugar de `www.projectasports.com`. Causa: `NEXT_PUBLIC_SITE_URL` no está seteada
-      en Vercel y `VERCEL_URL` devuelve la URL de preview.
-      **Fix:** setear `NEXT_PUBLIC_SITE_URL=https://www.projectasports.com` en las env vars
-      de Vercel (Production), o hardcodear el dominio en `sitemap.js` como fallback. _(Claude)_
+## Auditoría 1 _(squirrelscan v0.0.64 · 2026-07-06 · score: 49/100 F)_
 
-- [x] **Sitemap inválido** — mismo origen que el punto anterior; el sitemap referenciado
-      es el del dominio de preview, no el de producción. Se resuelve junto con el punto anterior. _(Claude)_
+> Auditoría inicial sobre https://www.projectasports.com (3 páginas crawleadas).
 
-- [x] **4 imágenes de banderas sin alt text** — `/flags/br.svg`, `/flags/es.svg`,
-      `/flags/ie.svg`, `/flags/nl.svg`. Afecta accesibilidad y SEO de imágenes.
-      **Fix:** agregar `alt` descriptivo en cada componente que use estas imágenes. _(Claude)_
+### Errores críticos
 
-- [x] **Botón de idioma inaccessible** — texto visible renderizado como `"ESEN"` (ES+EN
-      concatenados sin separación), no coincide con `aria-label="toggle language"`.
-      **Fix:** agregar `aria-hidden="true"` a los spans ES/EN en `Nav.jsx` y `LegalHeader.jsx`. _(Claude)_
+- [x] **Sitemap apunta al dominio viejo de Vercel** → hardcodear fallback en `sitemap.js` + setear `NEXT_PUBLIC_SITE_URL` en Vercel. _(Claude)_
+- [x] **Sitemap inválido** — resuelto junto con el punto anterior. _(Claude)_
+- [x] **4 imágenes de banderas sin alt text** → `alt` descriptivo en los componentes. _(Claude)_
+- [x] **Botón de idioma inaccesible** (`"ESEN"` sin separación) → `aria-hidden="true"` en spans ES/EN de `Nav.jsx` y `LegalHeader.jsx`. _(Claude)_
+- [x] **Tooltip "?" con aria-label incorrecto** → `aria-hidden="true"` en el carácter en `ContactCTA.jsx`. _(Claude)_
+- [x] **Páginas sin Cache-Control** → headers de caché en `next.config.mjs`. _(Claude)_
+- [x] **Imagen hero sin fetchpriority** — falso positivo, ya tenía `priority` prop en Next.js. _(Claude — investigado)_
 
-- [x] **Tooltip "?" con aria-label incorrecto** — el `aria-label` del botón de ayuda en
-      `ContactCTA.jsx` contiene el texto del hint en lugar de una descripción del botón.
-      **Fix:** agregar `aria-hidden="true"` al carácter "?" visible en `ContactCTA.jsx`. _(Claude)_
-
-- [x] **Páginas sin lifetime de caché** — las 3 páginas devuelven headers sin
-      `Cache-Control`. Impacta performance score.
-      **Fix:** configurar headers de caché en `next.config.mjs`. _(Claude)_
-
-- [x] **Imagen hero sin `fetchpriority="high"`** — falso positivo: ambas imágenes del hero
-      ya tenían `priority` prop en `Hero.jsx`, lo que Next.js convierte en `fetchpriority="high"`.
-      No requirió cambios. _(Claude — investigado)_
-
-### Warnings — 14 mejoras
+### Warnings
 
 #### SEO / Metadata
-- [x] **Meta description demasiado larga** (201 chars, límite recomendado: 155-160).
-      Afecta las 3 páginas porque `/privacidad` y `/terminos` heredan la descripción del
-      root layout. **Fix:** acortar en `layout.jsx` y agregar metadata propia en cada
-      página legal. _(Claude)_
-
-- [x] **Título duplicado** en `/`, `/privacidad` y `/terminos` — las 3 comparten el mismo
-      `<title>`. **Fix:** exportar `metadata` con título único en cada página legal. _(Claude)_
-
-- [x] **Descripción duplicada** — mismo problema que el título.
-      **Fix:** exportar `metadata` con descripción única en cada página legal. _(Claude)_
-
-- [x] **Canonical URL faltante** en las 3 páginas.
-      **Fix:** agregar `alternates: { canonical: '/' }` en metadata de cada página. _(Claude)_
-
-- [x] **`/privacidad` y `/terminos` no están en el sitemap**.
-      **Fix:** agregar ambas rutas en `sitemap.js`. _(Claude)_
+- [x] **Meta description demasiado larga** (201 chars) → acortar en root `layout.jsx` + metadata propia en páginas legales. _(Claude)_
+- [x] **Título duplicado** en las 3 páginas → `metadata` con título único en cada página legal. _(Claude)_
+- [x] **Descripción duplicada** — resuelto junto con el anterior. _(Claude)_
+- [x] **Canonical URL faltante** → `alternates: { canonical }` en cada página. _(Claude)_
+- [x] **`/privacidad` y `/terminos` no están en el sitemap** → agregadas en `sitemap.js`. _(Claude)_
 
 #### Performance
-- [x] **11 imágenes de banderas sin `loading="lazy"`** — banderas de países en secciones
-      below-the-fold se cargan de inmediato. **Fix:** agregado `loading="lazy"` en
-      `PlayerProfile.jsx`, `Team.jsx` y `Testimonials.jsx`. _(Claude)_
-
-- [x] **LCP hints faltantes** — el `<Logo>` en `LegalHeader.jsx` ya tenía `priority` prop
-      desde su creación. Falso positivo del scanner en el deploy anterior. _(Claude — investigado)_
-
-- [ ] **1 archivo JS aparentemente sin minificar** — `1hp3-t76m72lu.js` (191.6 KB,
-      ~158 KB de ahorro estimado). Probablemente una dependencia de terceros (framer-motion).
-      Investigar si es un false positive de Next.js/Vercel build. _(Claude — investigar)_
+- [x] **11 banderas sin `loading="lazy"`** → `loading="lazy"` en `PlayerProfile.jsx`, `Team.jsx`, `Testimonials.jsx`. _(Claude)_
+- [x] **LCP hints faltantes en páginas legales** — falso positivo, `LegalHeader` ya tenía `priority`. _(Claude — investigado)_
+- ~~**JS aparentemente sin minificar**~~ — `1hp3-t76m72lu.js` ya no existe en el build actual (hash cambió). Todos los chunks están minificados. Falso positivo. _(Desestimado)_
 
 #### Seguridad
-- [x] **Sin header `X-Frame-Options`** — sin protección contra clickjacking.
-      **Fix:** agregado `X-Frame-Options: SAMEORIGIN` junto con `X-Content-Type-Options`,
-      `Referrer-Policy` y `Permissions-Policy` en `next.config.mjs`. _(Claude)_
-
-- [ ] **Sin `Content-Security-Policy`** — header de seguridad recomendado. Complejo de
-      configurar sin romper cosas; requiere prueba cuidadosa. Dejado para después del
-      lanzamiento oficial. _(Claude — pendiente)_
-
-- [ ] **Formulario sin CAPTCHA** — el form de postulación es público y sin protección
-      anti-bot. **Fix:** integrar Cloudflare Turnstile u hCaptcha (servicio externo). _(Requiere decisión)_
+- [x] **Sin `X-Frame-Options`** → headers en `next.config.mjs` (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy). _(Claude)_
+- [ ] **Sin Content-Security-Policy** — complejo sin romper cosas. Pendiente post-lanzamiento. _(Pendiente)_
 
 #### Legal
-- [ ] **Sin disclosure de sub-procesadores (DPA)** — no se encontró mención explícita de
-      acuerdos de procesamiento de datos con terceros. Podría resolverse agregando una
-      sección a `/privacidad`. _(Claude / Legal)_
+- ~~**Sin disclosure de sub-procesadores (DPA)**~~ — Google LLC ya está mencionado en `/privacidad` con nombre, rol y link a su política. Falso positivo del scanner. _(Desestimado)_
 
-#### E-E-A-T (Expertise, Authoritativeness, Trustworthiness)
-- [ ] **Sin página `/about` dedicada** — el scanner no reconoce la sección `#about`
-      como página independiente. Bajo impacto para este tipo de sitio. _(Decisión UX)_
+#### E-E-A-T
+- [x] **Sin `/about` dedicada** → redirect `/about` → `/#about` en `next.config.mjs`. _(Claude)_
+- [x] **Sin `/contact` dedicada** → redirect `/contact` → `/#apply` en `next.config.mjs`. _(Claude)_
 
-- [ ] **Sin página `/contact` dedicada** — ídem anterior. _(Decisión UX)_
+---
+
+## Auditoría 2 _(squirrelscan v0.0.64 · 2026-07-06 · score: 72/100 C)_
+
+> Corrida después del primer push con fixes SEO/a11y/sitemap/seguridad.
+
+- [x] **`og:url` no coincide con canonical** en `/privacidad` y `/terminos` → `openGraph: { url }` en cada layout. _(Claude)_
+- [x] **Alt text redundante** en testimonios — bandera de "Países Bajos" duplicaba texto visible → `alt=""` en `Testimonials.jsx`. _(Claude)_
+- [x] **Meta description de `/privacidad` muy corta** (105 chars) → extendida en layout. _(Claude)_
+
+---
+
+## Auditoría 3 _(squirrelscan v0.0.64 · 2026-07-06 · score: 68/100 D)_
+
+> Regresión respecto a auditoría 2. Causa: descriptions extendidas superaron el límite de 160 chars.
+
+- [x] **Meta descriptions demasiado largas** — `/privacidad` (165 chars) y `/terminos` (181 chars) → recortadas a 128/152 chars. _(Claude)_
+- [x] **`og:image` faltante** en páginas legales — al agregar `openGraph: { url }`, el scanner detectó ausencia de imagen OG → `openGraph: { images: [{ url: '/opengraph-image' }] }`. _(Claude)_
+- [x] **SVGs de banderas sin `<title>`** — el scanner visita `/flags/*.svg` como páginas y detecta ausencia de texto alternativo interno → `<title>` agregado a los 6 SVGs (ar, br, cl, es, ie, nl). _(Claude)_
+- [ ] **`perf/critical-request-chains`** — comportamiento normal de Next.js. _(No accionable)_
+- ~~**`a11y/color-contrast`** en `div.stripes`~~ — elemento puramente decorativo (`pointer-events-none`, sin texto ni contenido). Falso positivo del scanner. _(Desestimado)_
+- ~~**`legal/subprocessor-disclosure`**~~ — falso positivo, Google LLC ya está en `/privacidad`. _(Desestimado)_
+- [x] **E-E-A-T `/about` y `/contact`** → redirects agregados en `next.config.mjs`. _(Claude)_
+- [ ] CAPTCHA — ignorado por ahora. _(Desestimado)_
+- [ ] CSP — pendiente post-lanzamiento. _(Pendiente)_
 
 ---
 

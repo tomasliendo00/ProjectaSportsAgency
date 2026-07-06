@@ -1,11 +1,12 @@
 export const metadata = {
   title: 'Términos y Condiciones',
-  description: 'Términos y condiciones de uso de los servicios de Projecta Sports Agency para becas y transferencias deportivas en EE.UU. Naturaleza del servicio, responsabilidades y ley aplicable.',
+  description: 'Términos y condiciones de Projecta Sports Agency. Naturaleza del servicio de becas deportivas en EE.UU., responsabilidades y ley aplicable.',
   alternates: {
     canonical: '/terminos',
   },
   openGraph: {
     url: '/terminos',
+    images: [{ url: '/opengraph-image' }],
   },
   robots: {
     index: true,
