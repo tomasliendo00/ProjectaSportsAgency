@@ -13,7 +13,7 @@ const CONTENT = {
     sections: [
       {
         h: '1. Responsable del tratamiento',
-        body: 'Projecta Sports Agency (en adelante, "Projecta"), con email de contacto hola@projectasports.com, es el responsable del tratamiento de los datos personales recabados a través de este sitio web.',
+        body: 'Projecta Sports Agency (en adelante, "Projecta"), con email de contacto projecta.recruiting@gmail.com, es el responsable del tratamiento de los datos personales recabados a través de este sitio web.',
       },
       {
         h: '2. Datos que recopilamos',
@@ -40,15 +40,15 @@ const CONTENT = {
       },
       {
         h: '4. Base legal',
-        body: 'El tratamiento de tus datos se basa en el consentimiento explícito que otorgás al completar y enviar el formulario de postulación. Podés retirar ese consentimiento en cualquier momento escribiéndonos a hola@projectasports.com, sin que ello afecte la licitud del tratamiento previo a la retirada.',
+        body: 'El tratamiento de tus datos se basa en el consentimiento explícito que otorgás al completar y enviar el formulario de postulación. Podés retirar ese consentimiento en cualquier momento escribiéndonos a projecta.recruiting@gmail.com, sin que ello afecte la licitud del tratamiento previo a la retirada.',
       },
       {
-        h: '5. Transferencia a terceros — Google',
+        h: '5. Transferencia a terceros: Google',
         body: 'El formulario de postulación utiliza Google Forms, un servicio de Google LLC. Al enviar el formulario, tus datos se transmiten y almacenan en los servidores de Google, que actúa como encargado del tratamiento de conformidad con sus propias políticas de privacidad, disponibles en policies.google.com/privacy. No compartimos tus datos con ningún otro tercero sin tu consentimiento previo.',
       },
       {
         h: '6. Conservación de datos',
-        body: 'Conservamos tus datos mientras exista una relación activa contigo o mientras sea necesario para gestionar tu proceso. Podés solicitar la eliminación de tus datos en cualquier momento contactándonos en hola@projectasports.com.',
+        body: 'Conservamos tus datos mientras exista una relación activa contigo o mientras sea necesario para gestionar tu proceso. Podés solicitar la eliminación de tus datos en cualquier momento contactándonos en projecta.recruiting@gmail.com.',
       },
       {
         h: '7. Tus derechos',
@@ -61,7 +61,7 @@ const CONTENT = {
           'Retirar tu consentimiento en cualquier momento.',
           'Portabilidad de datos, en los casos previstos por la legislación aplicable.',
         ],
-        footer: 'Para ejercer cualquiera de estos derechos, escribinos a hola@projectasports.com.',
+        footer: 'Para ejercer cualquiera de estos derechos, escribinos a projecta.recruiting@gmail.com.',
       },
       {
         h: '8. Menores de edad',
@@ -77,7 +77,7 @@ const CONTENT = {
       },
       {
         h: '11. Contacto',
-        body: 'Para cualquier consulta sobre privacidad: hola@projectasports.com',
+        body: 'Para cualquier consulta sobre privacidad: projecta.recruiting@gmail.com',
       },
     ],
     also: '¿Buscás los Términos y Condiciones?',
@@ -92,7 +92,7 @@ const CONTENT = {
     sections: [
       {
         h: '1. Data Controller',
-        body: 'Projecta Sports Agency (hereinafter "Projecta"), contact email hola@projectasports.com, is the controller of personal data collected through this website.',
+        body: 'Projecta Sports Agency (hereinafter "Projecta"), contact email projecta.recruiting@gmail.com, is the controller of personal data collected through this website.',
       },
       {
         h: '2. Data We Collect',
@@ -119,15 +119,15 @@ const CONTENT = {
       },
       {
         h: '4. Legal Basis',
-        body: 'The processing of your data is based on the explicit consent you give when completing and submitting the application form. You may withdraw that consent at any time by writing to hola@projectasports.com, without affecting the lawfulness of processing prior to withdrawal.',
+        body: 'The processing of your data is based on the explicit consent you give when completing and submitting the application form. You may withdraw that consent at any time by writing to projecta.recruiting@gmail.com, without affecting the lawfulness of processing prior to withdrawal.',
       },
       {
-        h: '5. Transfer to Third Parties — Google',
+        h: '5. Transfer to Third Parties: Google',
         body: "The application form uses Google Forms, a service by Google LLC. When you submit the form, your data is transmitted to and stored on Google's servers, which acts as a data processor under its own privacy policies, available at policies.google.com/privacy. We do not share your data with any other third party without your prior consent.",
       },
       {
         h: '6. Data Retention',
-        body: 'We retain your data while there is an active relationship with you or as long as necessary to manage your process. You may request deletion of your data at any time by contacting us at hola@projectasports.com.',
+        body: 'We retain your data while there is an active relationship with you or as long as necessary to manage your process. You may request deletion of your data at any time by contacting us at projecta.recruiting@gmail.com.',
       },
       {
         h: '7. Your Rights',
@@ -140,7 +140,7 @@ const CONTENT = {
           'Withdraw your consent at any time.',
           'Data portability, where provided by applicable law.',
         ],
-        footer: 'To exercise any of these rights, contact us at hola@projectasports.com.',
+        footer: 'To exercise any of these rights, contact us at projecta.recruiting@gmail.com.',
       },
       {
         h: '8. Minors',
@@ -156,7 +156,7 @@ const CONTENT = {
       },
       {
         h: '11. Contact',
-        body: 'For any privacy-related questions: hola@projectasports.com',
+        body: 'For any privacy-related questions: projecta.recruiting@gmail.com',
       },
     ],
     also: 'Looking for the Terms & Conditions?',

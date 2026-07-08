@@ -28,7 +28,7 @@ const CONTENT = {
       },
       {
         h: '3. Ausencia de garantía de resultados',
-        body: 'Projecta no garantiza la obtención de ninguna beca, oferta universitaria ni visa. Los resultados dependen de múltiples factores externos —como las decisiones de cada universidad, el perfil del jugador y las condiciones del mercado— que están fuera del control de Projecta. Nuestro compromiso es brindarte el mejor asesoramiento y gestión posibles.',
+        body: 'Projecta no garantiza la obtención de ninguna beca, oferta universitaria ni visa. Los resultados dependen de múltiples factores externos, como las decisiones de cada universidad, el perfil del jugador y las condiciones del mercado, que están fuera del control de Projecta. Nuestro compromiso es brindarte el mejor asesoramiento y gestión posibles.',
       },
       {
         h: '4. Veracidad de la información',
@@ -45,7 +45,7 @@ const CONTENT = {
       },
       {
         h: '6. Propiedad intelectual',
-        body: 'Todos los contenidos del sitio web —incluyendo textos, imágenes, logos y diseño— son propiedad de Projecta Sports Agency o se utilizan bajo licencia. Queda prohibida su reproducción, distribución o uso comercial sin autorización expresa y por escrito de Projecta.',
+        body: 'Todos los contenidos del sitio web, incluyendo textos, imágenes, logos y diseño, son propiedad de Projecta Sports Agency o se utilizan bajo licencia. Queda prohibida su reproducción, distribución o uso comercial sin autorización expresa y por escrito de Projecta.',
       },
       {
         h: '7. Limitación de responsabilidad',
@@ -61,7 +61,7 @@ const CONTENT = {
       },
       {
         h: '10. Contacto',
-        body: 'Para consultas sobre estos Términos y Condiciones: hola@projectasports.com',
+        body: 'Para consultas sobre estos Términos y Condiciones: projecta.recruiting@gmail.com',
       },
     ],
     also: '¿Buscás la Política de Privacidad?',
@@ -91,7 +91,7 @@ const CONTENT = {
       },
       {
         h: '3. No Guarantee of Results',
-        body: 'Projecta does not guarantee the obtainment of any scholarship, university offer or visa. Results depend on multiple external factors —such as each university\'s decisions, the player\'s profile and market conditions— that are outside Projecta\'s control. Our commitment is to provide you with the best possible advisory and management.',
+        body: 'Projecta does not guarantee the obtainment of any scholarship, university offer or visa. Results depend on multiple external factors, such as each university\'s decisions, the player\'s profile and market conditions, that are outside Projecta\'s control. Our commitment is to provide you with the best possible advisory and management.',
       },
       {
         h: '4. Accuracy of Information',
@@ -108,7 +108,7 @@ const CONTENT = {
       },
       {
         h: '6. Intellectual Property',
-        body: 'All website content —including texts, images, logos and design— is the property of Projecta Sports Agency or is used under license. Reproduction, distribution or commercial use without express written authorization from Projecta is prohibited.',
+        body: 'All website content, including texts, images, logos and design, is the property of Projecta Sports Agency or is used under license. Reproduction, distribution or commercial use without express written authorization from Projecta is prohibited.',
       },
       {
         h: '7. Limitation of Liability',
@@ -124,7 +124,7 @@ const CONTENT = {
       },
       {
         h: '10. Contact',
-        body: 'For inquiries about these Terms and Conditions: hola@projectasports.com',
+        body: 'For inquiries about these Terms and Conditions: projecta.recruiting@gmail.com',
       },
     ],
     also: 'Looking for the Privacy Policy?',

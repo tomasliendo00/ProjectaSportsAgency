@@ -174,6 +174,7 @@ export const content = {
       rights: 'Todos los derechos reservados.',
       privacy: 'Política de Privacidad',
       terms: 'Términos y Condiciones',
+      whatsappMsg: 'Hola, me interesa saber más sobre Projecta Sports Agency.',
     },
   },
   en: {
@@ -347,6 +348,7 @@ export const content = {
       rights: 'All rights reserved.',
       privacy: 'Privacy Policy',
       terms: 'Terms & Conditions',
+      whatsappMsg: 'Hi, I\'d like to know more about Projecta Sports Agency.',
     },
   },
 }
@@ -357,10 +359,16 @@ export function LanguageProvider({ children }) {
   const [lang, setLang] = useState('es')
   const toggle = useCallback(() => setLang((l) => (l === 'es' ? 'en' : 'es')), [])
 
+  useEffect(() => {
+    const saved = localStorage.getItem('psa-lang')
+    if (saved === 'en' || saved === 'es') setLang(saved)
+  }, [])
+
   // Keep the document <title>, meta description and <html lang> in sync with the
   // active language (metadata is server-rendered in Spanish for SEO; this updates
   // it client-side when the user toggles).
   useEffect(() => {
+    localStorage.setItem('psa-lang', lang)
     document.documentElement.lang = lang
     document.title = content[lang].meta.title
     const desc = document.querySelector('meta[name="description"]')

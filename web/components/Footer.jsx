@@ -36,9 +36,9 @@ export default function Footer() {
             <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-bone/50">{f.social}</h3>
             <ul className="space-y-2 text-sm text-bone/70">
               <li><a href="https://www.instagram.com/projectasports/" className="hover:text-flame">Instagram</a></li>
-              <li><a href="#" className="hover:text-flame">TikTok [FALTA LINK]</a></li>
-              <li><a href="#" className="hover:text-flame">WhatsApp [FALTA LINK]</a></li>
-              <li><a href="mailto:hola@projectasports.com" className="hover:text-flame">Email [FALTA LINK]</a></li>
+              <li><a href="https://www.tiktok.com/@projecta_usa" target="_blank" rel="noopener noreferrer" className="hover:text-flame">TikTok</a></li>
+              <li><a href={`https://wa.me/13125461338?text=${encodeURIComponent(f.whatsappMsg)}`} target="_blank" rel="noopener noreferrer" className="hover:text-flame">WhatsApp</a></li>
+              <li><a href="mailto:projecta.recruiting@gmail.com" className="hover:text-flame">Email</a></li>
             </ul>
           </div>
         </div>

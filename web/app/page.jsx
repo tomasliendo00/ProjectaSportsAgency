@@ -11,6 +11,7 @@ import Team from '@/components/Team'
 import Testimonials from '@/components/Testimonials'
 import ContactCTA from '@/components/ContactCTA'
 import Footer from '@/components/Footer'
+import WhatsAppButton from '@/components/WhatsAppButton'
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <ContactCTA />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }
