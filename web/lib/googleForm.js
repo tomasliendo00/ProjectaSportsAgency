@@ -7,6 +7,13 @@
 export const GOOGLE_FORM_ACTION =
   'https://docs.google.com/forms/d/e/1FAIpQLSehA8JKbaU2o_6HyCf1KKtVFoMr3ryPtDn3f3YVIYodcShIBw/formResponse'
 
+// The form is split into 4 pages (0 = implicit first page, then the
+// "Personal Information" / "Athletic Information" / "Academic Information"
+// page breaks). Every question lives on pages 1-3, so a POST must declare
+// that all pages were walked through — otherwise Google still returns the
+// confirmation page but only keeps the answers from page 0 (i.e. nothing).
+export const PAGE_HISTORY = '0,1,2,3'
+
 // Maps our internal field keys → Google Form entry IDs.
 export const FIELD_ENTRIES = {
   // Step 1 — personal details

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { GOOGLE_FORM_ACTION, FIELD_ENTRIES } from '@/lib/googleForm'
+import { GOOGLE_FORM_ACTION, FIELD_ENTRIES, PAGE_HISTORY } from '@/lib/googleForm'
 
 // Server-side proxy for the Google Form submission. Doing the POST here
 // (server-to-server) lets us read Google's real status and body, instead of
@@ -22,6 +22,12 @@ export async function POST(request) {
       body.append(entry, value)
     }
   }
+
+  // Tell Google every page was visited, so answers from pages 1-3 are kept.
+  // `fvv=1` marks this as a full (non-draft) form-view submission.
+  body.append('pageHistory', PAGE_HISTORY)
+  body.append('fvv', '1')
+  body.append('submit', 'Submit')
 
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 10000)
